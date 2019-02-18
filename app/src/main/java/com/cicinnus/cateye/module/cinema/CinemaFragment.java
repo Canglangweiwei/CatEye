@@ -267,23 +267,23 @@ public class CinemaFragment extends BaseMVPFragment<CinemaPresenter> implements 
 
         cinemaAdapter.addHeaderView(header);
         mBannerHeight = UiUtils.dp2px(mContext, 60);
-        //滑动监听
+        // 滑动监听
         rvCinema.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    //停止滑动
+                    // 停止滑动
                     tvLocation.setVisibility(View.VISIBLE);
                 } else if (recyclerView.getScrollState() != 0) {
-                    //正在滑动
+                    // 正在滑动
                     tvLocation.setVisibility(View.INVISIBLE);
                 }
             }
 
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                //banner高度大于滑动距离,跟随滑动
+                // banner高度大于滑动距离,跟随滑动
                 if (mBannerHeight >= mDistanceY) {
                     llFilter.setVisibility(View.GONE);
                 } else {
@@ -427,9 +427,6 @@ public class CinemaFragment extends BaseMVPFragment<CinemaPresenter> implements 
 
     /**
      * 设置字体颜色和右侧图标
-     *
-     * @param tv
-     * @param show
      */
     private void setTextDrawableAndColor(TextView tv, boolean show) {
         Drawable drawable;
@@ -444,10 +441,9 @@ public class CinemaFragment extends BaseMVPFragment<CinemaPresenter> implements 
         drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
         tv.setCompoundDrawables(null, null, drawable, null);
         tv.setTextColor(color);
-
     }
 
-    //区域window
+    // 区域window
     private void createAreaWindow() {
         View areaContent = LayoutInflater.from(mContext).inflate(R.layout.layout_area_window, null);
         rvParent = (RecyclerView) areaContent.findViewById(R.id.rv_district);
@@ -496,7 +492,7 @@ public class CinemaFragment extends BaseMVPFragment<CinemaPresenter> implements 
         });
     }
 
-    //排序window
+    // 排序window
     private void createSortCondition() {
         View sortCondition = LayoutInflater.from(mContext).inflate(R.layout.layout_sort_condition, null);
         RecyclerView rvSortCondition = (RecyclerView) sortCondition.findViewById(R.id.rv_sort_condition);
@@ -525,7 +521,7 @@ public class CinemaFragment extends BaseMVPFragment<CinemaPresenter> implements 
         });
     }
 
-    //品牌window
+    // 品牌window
     private void createBrandWindow() {
         View brandContent = LayoutInflater.from(mContext).inflate(R.layout.layout_brand, null);
         RecyclerView rvBrand = (RecyclerView) brandContent.findViewById(R.id.rv_brand);
@@ -559,15 +555,13 @@ public class CinemaFragment extends BaseMVPFragment<CinemaPresenter> implements 
                 setTextDrawableAndColor(headerTvBrand, false);
             }
         });
-
-
     }
 
-    //服务和影厅window
+    // 服务和影厅window
     private void createHallTypeWindow() {
         View hallTypeContent = LayoutInflater.from(mContext).inflate(R.layout.layout_hall_type, null);
 
-        //特色功能
+        // 特色功能
         RecyclerView rvService = (RecyclerView) hallTypeContent.findViewById(R.id.rv_service);
         rvService.setLayoutManager(new GridLayoutManager(mContext, 4));
         serviceAdapter = new ServiceAdapter();
@@ -578,7 +572,7 @@ public class CinemaFragment extends BaseMVPFragment<CinemaPresenter> implements 
                 serviceId = item.getId();
             }
         });
-        //影院类型
+        // 影院类型
         RecyclerView rvHallType = (RecyclerView) hallTypeContent.findViewById(R.id.rv_hall_type);
         rvHallType.setLayoutManager(new GridLayoutManager(mContext, 4));
         hallTypeAdapter = new HallTypeAdapter();
@@ -590,7 +584,7 @@ public class CinemaFragment extends BaseMVPFragment<CinemaPresenter> implements 
             }
         });
 
-        //重置
+        // 重置
         hallTypeContent.findViewById(R.id.tv_reset)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -611,11 +605,10 @@ public class CinemaFragment extends BaseMVPFragment<CinemaPresenter> implements 
                         setTextDrawableAndColor(tvHallType, false);
                         setTextDrawableAndColor(headerTvHallType, false);
                         hallTypeWindow.dismiss();
-
                     }
                 });
 
-        //确定
+        // 确定
         hallTypeContent.findViewById(R.id.tv_confirm)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -637,8 +630,8 @@ public class CinemaFragment extends BaseMVPFragment<CinemaPresenter> implements 
         });
     }
 
-    /*
-    创建排序条件集合
+    /**
+     * 创建排序条件集合
      */
     private List<SortConditionBean> generateSortCondition() {
         List<SortConditionBean> list = new ArrayList<>();
@@ -691,10 +684,9 @@ public class CinemaFragment extends BaseMVPFragment<CinemaPresenter> implements 
     public void addCinema(List<CinemaListBean.DataBean.CinemasBean> cinemasBeanList) {
         offset = 20;
         cinemaAdapter.setNewData(cinemasBeanList);
-        //切换数据之后移动到列表第一位,同时将滑动距离设置为0
+        // 切换数据之后移动到列表第一位,同时将滑动距离设置为0
         rvCinema.scrollToPosition(0);
         mDistanceY = 0;
-
     }
 
     @Override
@@ -740,22 +732,19 @@ public class CinemaFragment extends BaseMVPFragment<CinemaPresenter> implements 
         rvParent.setAdapter(areaAdapter);
         rvSub.setAdapter(areaSubAdapter);
         setDistrictData(filterBean);
-        //品牌
+        // 品牌
         filterBean.getData().getBrand().getSubItems().get(0).isSelect = true;
         brandAdapter.setNewData(filterBean.getData().getBrand().getSubItems());
-        //特色功能
+        // 特色功能
         filterBean.getData().getService().getSubItems().get(0).isSelect = true;
         serviceAdapter.setNewData(filterBean.getData().getService().getSubItems());
-        //特效厅
+        // 特效厅
         filterBean.getData().getHallType().getSubItems().get(0).isSelect = true;
         hallTypeAdapter.setNewData(filterBean.getData().getHallType().getSubItems());
-
     }
 
     /**
      * 设置地铁筛选数据
-     *
-     * @param filterBean
      */
     private void setMetroData(FilterBean filterBean) {
         filterBean.getData().getSubway().getSubItems().get(0).isSelect = true;
@@ -774,10 +763,8 @@ public class CinemaFragment extends BaseMVPFragment<CinemaPresenter> implements 
                     stationId = -1;
                     mPresenter.getCinema(ci, offset, limit, lat, lng, districtId, areaId, sort, lineId, stationId, brandId, serviceId, hallType);
                     areaWindow.dismiss();
-
                 }
                 metroSubAdapter.setNewData(item.getSubItems());
-
             }
         });
         metroSubAdapter.setOnMetroSubClickListener(new MetroSubAdapter.OnMetroSubClickListener() {
@@ -802,8 +789,6 @@ public class CinemaFragment extends BaseMVPFragment<CinemaPresenter> implements 
 
     /**
      * 设置地区筛选的数据
-     *
-     * @param filterBean
      */
     private void setDistrictData(FilterBean filterBean) {
         filterBean.getData().getDistrict().getSubItems().get(0).isSelect = true;
@@ -840,7 +825,6 @@ public class CinemaFragment extends BaseMVPFragment<CinemaPresenter> implements 
         });
     }
 
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 32 && resultCode == 33) {
@@ -857,7 +841,6 @@ public class CinemaFragment extends BaseMVPFragment<CinemaPresenter> implements 
             mPresenter.getFilter(ci);
         }
     }
-
 
     @Override
     public void onDestroy() {

@@ -10,23 +10,24 @@
         android:background="@color/white">
 
         <TextView
-            android:textColor="@color/text_gray_deep"
             android:id="@+id/tv_area"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:drawableEnd="@drawable/ic_arrow_down_solid"
             android:drawableRight="@drawable/ic_arrow_down_solid"
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="1"
-            android:text="区域" />
+            android:text="区域"
+            android:textColor="@color/text_gray_deep" />
 
         <View
-            android:layout_width="2px"
+            android:layout_width="0.1dp"
             android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/dp_6"
             android:layout_marginLeft="@dimen/dp_12"
             android:layout_marginTop="@dimen/dp_6"
+            android:layout_marginBottom="@dimen/dp_6"
             android:background="@color/divider_normal" />
 
         <TextView
@@ -34,6 +35,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:drawableEnd="@drawable/ic_arrow_down_solid"
             android:drawableRight="@drawable/ic_arrow_down_solid"
             android:ellipsize="end"
             android:gravity="center"
@@ -41,11 +43,12 @@
             android:text="离我最近" />
 
         <View
-            android:layout_width="2px"
+            android:layout_width="0.1dp"
             android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/dp_6"
+            android:layout_marginStart="@dimen/dp_12"
             android:layout_marginLeft="@dimen/dp_12"
             android:layout_marginTop="@dimen/dp_6"
+            android:layout_marginBottom="@dimen/dp_6"
             android:background="@color/divider_normal" />
 
         <TextView
@@ -53,6 +56,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:drawableEnd="@drawable/ic_arrow_down_solid"
             android:drawableRight="@drawable/ic_arrow_down_solid"
             android:ellipsize="end"
             android:gravity="center"
@@ -60,11 +64,12 @@
             android:text="品牌" />
 
         <View
-            android:layout_width="2px"
+            android:layout_width="0.1dp"
             android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/dp_6"
+            android:layout_marginStart="@dimen/dp_12"
             android:layout_marginLeft="@dimen/dp_12"
             android:layout_marginTop="@dimen/dp_6"
+            android:layout_marginBottom="@dimen/dp_6"
             android:background="@color/divider_normal" />
 
         <TextView
@@ -72,11 +77,11 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:drawableEnd="@drawable/ic_arrow_down_solid"
             android:drawableRight="@drawable/ic_arrow_down_solid"
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="1"
             android:text="特效/服务" />
     </LinearLayout>
-
 </LinearLayout>

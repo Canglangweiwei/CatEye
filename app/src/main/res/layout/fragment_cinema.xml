@@ -49,7 +49,6 @@
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/ic_search_white" />
         </RelativeLayout>
-
     </RelativeLayout>
 
     <com.cicinnus.cateye.view.ProgressLayout
@@ -63,14 +62,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_cinema"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
-
         </com.cicinnus.cateye.view.SuperSwipeRefreshLayout>
-
     </com.cicinnus.cateye.view.ProgressLayout>
 
     <include
