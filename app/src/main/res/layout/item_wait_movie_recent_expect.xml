@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="84dp"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/dp_10"
+    android:layout_marginRight="@dimen/dp_10"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_recent_expect_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/sp_12"
+        tools:text="1月28日" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="114dp"
+        android:layout_marginTop="8dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|left"
+            android:contentDescription="@string/app_name"
+            android:foreground="#0b000000"
+            android:src="@drawable/ic_favorite" />
+
+        <ImageView
+            android:id="@+id/iv_recent_expect"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/app_name" />
+
+        <ImageView
+            android:id="@+id/iv_presale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_marginEnd="@dimen/dp_4"
+            android:layout_marginRight="@dimen/dp_4"
+            android:layout_marginBottom="@dimen/dp_4"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_presale_blue_text" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_recent_expect_movie_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/sp_12"
+        tools:text="电影名" />
+
+    <TextView
+        android:id="@+id/tv_recent_expect_wish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textSize="@dimen/sp_12"
+        tools:text="xxxx人想看" />
+</LinearLayout>
