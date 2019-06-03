@@ -9,10 +9,10 @@ import io.reactivex.Observable;
  */
 
 public class PickCityManager {
-    public Observable<PickCityBean> getCity(){
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getCity();
-    }
+   public Observable<PickCityBean> getCity() {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getCity();
+   }
 }

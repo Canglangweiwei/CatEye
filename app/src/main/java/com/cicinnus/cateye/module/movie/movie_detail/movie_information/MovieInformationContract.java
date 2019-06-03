@@ -9,17 +9,18 @@ import java.util.List;
  */
 
 public class MovieInformationContract {
-    public interface IMovieInformationView extends ICoreLoadingView {
+   public interface IMovieInformationView extends ICoreLoadingView {
 
-        void addMovieInformation(List<MovieInformationBean.DataBean.NewsListBean> movieInformationBean);
+      void addMovieInformation(List<MovieInformationBean.DataBean.NewsListBean> movieInformationBean);
 
-        void loadMoreError(String message);
+      void loadMoreError(String message);
 
-        void addMoreMovieInformation(List<MovieInformationBean.DataBean.NewsListBean> newsList);
-    }
-    public interface IMovieInformationPresenter{
-        void getMovieInformation(int movieId, int offset);
+      void addMoreMovieInformation(List<MovieInformationBean.DataBean.NewsListBean> newsList);
+   }
 
-        void getMoreMovieInformation(int mMovieId, int offset);
-    }
+   public interface IMovieInformationPresenter {
+      void getMovieInformation(int movieId, int offset);
+
+      void getMoreMovieInformation(int mMovieId, int offset);
+   }
 }

@@ -14,29 +14,29 @@ import java.util.List;
  */
 
 public class MovieResourceContract {
-    public interface IMovieResourceView extends ICoreLoadingView {
+   public interface IMovieResourceView extends ICoreLoadingView {
 
-        void addMovieTechnicals(MovieTechnicalsBean.DataBean technicalsBeanData);
+      void addMovieTechnicals(MovieTechnicalsBean.DataBean technicalsBeanData);
 
-        void addMovieDialogues(List<MovieDialoguesBean.DataBean> movieDialoguesBeanData);
+      void addMovieDialogues(List<MovieDialoguesBean.DataBean> movieDialoguesBeanData);
 
-        void addMovieRelatedCompanies(List<MovieRelatedCompanies.DataBean> movieRelatedCompaniesData);
+      void addMovieRelatedCompanies(List<MovieRelatedCompanies.DataBean> movieRelatedCompaniesData);
 
-        void addMovieParentGuidances(List<MovieParentGuidancesBean.DataBean.GovBean> govBeanList);
+      void addMovieParentGuidances(List<MovieParentGuidancesBean.DataBean.GovBean> govBeanList);
 
-        void addMovieHighLights(List<MovieHighLightsBean.DataBean> movieHighLightsBeanData);
-    }
+      void addMovieHighLights(List<MovieHighLightsBean.DataBean> movieHighLightsBeanData);
+   }
 
-    public interface IMovieResourcePresenter {
-        void getMovieTechnicals(int movieId);
+   public interface IMovieResourcePresenter {
+      void getMovieTechnicals(int movieId);
 
-        void getMovieDialogues(int movieId);
+      void getMovieDialogues(int movieId);
 
-        void getMovieRelatedCompanies(int movieId);
+      void getMovieRelatedCompanies(int movieId);
 
-        void getMovieParentGuidances(int movieId);
+      void getMovieParentGuidances(int movieId);
 
-        void getMovieHighLights(int movieId);
-    }
+      void getMovieHighLights(int movieId);
+   }
 
 }

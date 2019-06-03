@@ -18,104 +18,104 @@ import io.reactivex.functions.Consumer;
  * Created by Cicinnus on 2017/1/25.
  */
 public class WaitMovieMVPPresenter
-        extends BaseMVPPresenter<WaitMovieFragmentContract.IWaitMovieView>
-        implements WaitMovieFragmentContract.IWaitMoviePresenter {
+    extends BaseMVPPresenter<WaitMovieFragmentContract.IWaitMovieView>
+    implements WaitMovieFragmentContract.IWaitMoviePresenter {
 
-    private final WaitMovieManager waitMovieManager;
+   private final WaitMovieManager waitMovieManager;
 
-    public WaitMovieMVPPresenter(Activity activity, WaitMovieFragmentContract.IWaitMovieView view) {
-        super(activity, view);
-        waitMovieManager = new WaitMovieManager();
-    }
+   public WaitMovieMVPPresenter(Activity activity, WaitMovieFragmentContract.IWaitMovieView view) {
+      super(activity, view);
+      waitMovieManager = new WaitMovieManager();
+   }
 
-    @Override
-    public void getTrailerRecommendMovie() {
-        addSubscribeUntilDestroy(waitMovieManager.getTrailerRecommendMovie()
-                .subscribe(new Consumer<TrailerRecommendBean>() {
-                    @Override
-                    public void accept(@NonNull TrailerRecommendBean trailerRecommendBean) {
-                        mView.addTrailerRecommendMovieList(trailerRecommendBean.getData());
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(@NonNull Throwable throwable) {
-                        Logger.e(throwable.getMessage());
-                    }
-                }));
-    }
+   @Override
+   public void getTrailerRecommendMovie() {
+      addSubscribeUntilDestroy(waitMovieManager.getTrailerRecommendMovie()
+          .subscribe(new Consumer<TrailerRecommendBean>() {
+             @Override
+             public void accept(@NonNull TrailerRecommendBean trailerRecommendBean) {
+                mView.addTrailerRecommendMovieList(trailerRecommendBean.getData());
+             }
+          }, new Consumer<Throwable>() {
+             @Override
+             public void accept(@NonNull Throwable throwable) {
+                Logger.e(throwable.getMessage());
+             }
+          }));
+   }
 
-    @Override
-    public void getRecentExpect(int offset, int limit) {
-        mView.showLoading();
-        addSubscribeUntilDestroy(waitMovieManager.getRecentExpectList(offset, limit)
-                .subscribe(new Consumer<ExpectMovieBean>() {
-                    @Override
-                    public void accept(@NonNull ExpectMovieBean expectMovieBean) {
-                        mView.addRecentExpectMovieList(expectMovieBean.getData().getComing());
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(@NonNull Throwable throwable) {
-                        mView.showError(ErrorHanding.handleError(throwable));
+   @Override
+   public void getRecentExpect(int offset, int limit) {
+      mView.showLoading();
+      addSubscribeUntilDestroy(waitMovieManager.getRecentExpectList(offset, limit)
+          .subscribe(new Consumer<ExpectMovieBean>() {
+             @Override
+             public void accept(@NonNull ExpectMovieBean expectMovieBean) {
+                mView.addRecentExpectMovieList(expectMovieBean.getData().getComing());
+             }
+          }, new Consumer<Throwable>() {
+             @Override
+             public void accept(@NonNull Throwable throwable) {
+                mView.showError(ErrorHanding.handleError(throwable));
 
-                    }
-                }, new Action() {
-                    @Override
-                    public void run() {
-                        mView.showContent();
-                    }
-                }));
-    }
+             }
+          }, new Action() {
+             @Override
+             public void run() {
+                mView.showContent();
+             }
+          }));
+   }
 
-    @Override
-    public void getWaitMovieList(int limit, int offset, int limit2) {
-        mView.showLoading();
-        // 按顺序发射三组数据
-        addSubscribeUntilDestroy(Observable.concatArray(
-                waitMovieManager.getWaitMovieList(limit),
-                waitMovieManager.getTrailerRecommendMovie(),
-                waitMovieManager.getRecentExpectList(offset, limit2))
-                .subscribe(new Consumer<Object>() {
-                    @Override
-                    public void accept(@NonNull Object o) {
-                        if (o instanceof WaitMovieBean) {
-                            mView.addWaitMovieList(((WaitMovieBean) o).getData().getComing());
-                            mView.addIds(((WaitMovieBean) o).getData().getMovieIds());
-                        } else if (o instanceof TrailerRecommendBean) {
-                            mView.addTrailerRecommendMovieList(((TrailerRecommendBean) o).getData());
-                        } else if (o instanceof ExpectMovieBean) {
-                            mView.addRecentExpectMovieList(((ExpectMovieBean) o).getData().getComing());
+   @Override
+   public void getWaitMovieList(int limit, int offset, int limit2) {
+      mView.showLoading();
+      // 按顺序发射三组数据
+      addSubscribeUntilDestroy(Observable.concatArray(
+          waitMovieManager.getWaitMovieList(limit),
+          waitMovieManager.getTrailerRecommendMovie(),
+          waitMovieManager.getRecentExpectList(offset, limit2))
+          .subscribe(new Consumer<Object>() {
+             @Override
+             public void accept(@NonNull Object o) {
+                if (o instanceof WaitMovieBean) {
+                   mView.addWaitMovieList(((WaitMovieBean) o).getData().getComing());
+                   mView.addIds(((WaitMovieBean) o).getData().getMovieIds());
+                } else if (o instanceof TrailerRecommendBean) {
+                   mView.addTrailerRecommendMovieList(((TrailerRecommendBean) o).getData());
+                } else if (o instanceof ExpectMovieBean) {
+                   mView.addRecentExpectMovieList(((ExpectMovieBean) o).getData().getComing());
 
-                        }
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(@NonNull Throwable throwable) {
-                        Logger.d(throwable.getMessage());
-                        mView.showError(ErrorHanding.handleError(throwable));
-                    }
-                }, new Action() {
-                    @Override
-                    public void run() {
-                        mView.showContent();
-                    }
-                }));
-    }
+                }
+             }
+          }, new Consumer<Throwable>() {
+             @Override
+             public void accept(@NonNull Throwable throwable) {
+                Logger.d(throwable.getMessage());
+                mView.showError(ErrorHanding.handleError(throwable));
+             }
+          }, new Action() {
+             @Override
+             public void run() {
+                mView.showContent();
+             }
+          }));
+   }
 
-    @Override
-    public void getMoreWaitMovie(String s) {
-        addSubscribeUntilDestroy(waitMovieManager.getMoreWaitMovieList(s)
-                .subscribe(new Consumer<WaitMovieBean.DataBean>() {
-                    @Override
-                    public void accept(@NonNull WaitMovieBean.DataBean dataBean) {
-                        mView.addMoreWaitMovie(dataBean.getComing());
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(@NonNull Throwable throwable) {
-                        Logger.e(throwable.getMessage());
-                        mView.loadMoreFail();
-                    }
-                }));
-    }
+   @Override
+   public void getMoreWaitMovie(String s) {
+      addSubscribeUntilDestroy(waitMovieManager.getMoreWaitMovieList(s)
+          .subscribe(new Consumer<WaitMovieBean.DataBean>() {
+             @Override
+             public void accept(@NonNull WaitMovieBean.DataBean dataBean) {
+                mView.addMoreWaitMovie(dataBean.getComing());
+             }
+          }, new Consumer<Throwable>() {
+             @Override
+             public void accept(@NonNull Throwable throwable) {
+                Logger.e(throwable.getMessage());
+                mView.loadMoreFail();
+             }
+          }));
+   }
 }

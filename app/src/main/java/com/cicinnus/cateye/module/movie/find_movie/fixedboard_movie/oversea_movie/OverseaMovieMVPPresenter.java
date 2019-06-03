@@ -18,41 +18,41 @@ import io.reactivex.functions.Consumer;
 
 public class OverseaMovieMVPPresenter extends com.cicinnus.retrofitlib.base.BaseMVPPresenter<OverseaMovieContract.IOverseaMovieView> implements OverseaMovieContract.IOverseaMoviePresenter {
 
-    private final OverseaMovieManager overseaMovieManager;
+   private final OverseaMovieManager overseaMovieManager;
 
-    public OverseaMovieMVPPresenter(Activity activity, OverseaMovieContract.IOverseaMovieView view) {
-        super(activity, view);
-        overseaMovieManager = new OverseaMovieManager();
-    }
+   public OverseaMovieMVPPresenter(Activity activity, OverseaMovieContract.IOverseaMovieView view) {
+      super(activity, view);
+      overseaMovieManager = new OverseaMovieManager();
+   }
 
-    @Override
-    public void getOverseaMovie(final String area) {
-        mView.showLoading();
-        //合并两个请求
-        addSubscribeUntilDestroy(Observable.merge(overseaMovieManager.getOverseaHotMovie(area),overseaMovieManager.getOverseaComingMovie(area))
-                .compose(SchedulersCompat.applyIoSchedulers())
-                .subscribe(new Consumer<Object>() {
-                    @Override
-                    public void accept(@NonNull Object o) throws Exception {
-                        if(o instanceof OverseaHotMovieBean){
-                            mView.addOverseaHotMovie(((OverseaHotMovieBean) o).getData().getHot());
-                        }else if(o instanceof OverseaComingMovieBean){
-                            mView.addOverseaComingMovie(((OverseaComingMovieBean) o).getData().getComing());
-                        }
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(@NonNull Throwable throwable) throws Exception {
-                        mView.showError(throwable.getMessage());
+   @Override
+   public void getOverseaMovie(final String area) {
+      mView.showLoading();
+      //合并两个请求
+      addSubscribeUntilDestroy(Observable.merge(overseaMovieManager.getOverseaHotMovie(area), overseaMovieManager.getOverseaComingMovie(area))
+          .compose(SchedulersCompat.applyIoSchedulers())
+          .subscribe(new Consumer<Object>() {
+             @Override
+             public void accept(@NonNull Object o) throws Exception {
+                if (o instanceof OverseaHotMovieBean) {
+                   mView.addOverseaHotMovie(((OverseaHotMovieBean) o).getData().getHot());
+                } else if (o instanceof OverseaComingMovieBean) {
+                   mView.addOverseaComingMovie(((OverseaComingMovieBean) o).getData().getComing());
+                }
+             }
+          }, new Consumer<Throwable>() {
+             @Override
+             public void accept(@NonNull Throwable throwable) throws Exception {
+                mView.showError(throwable.getMessage());
 
-                    }
-                }, new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        mView.showContent();
+             }
+          }, new Action() {
+             @Override
+             public void run() throws Exception {
+                mView.showContent();
 
-                    }
-                }));
+             }
+          }));
 
-    }
+   }
 }

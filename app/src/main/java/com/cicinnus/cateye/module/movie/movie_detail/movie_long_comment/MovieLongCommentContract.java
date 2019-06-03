@@ -9,14 +9,16 @@ import java.util.List;
  */
 
 public class MovieLongCommentContract {
-    public interface IMovieLongCommentView extends ICoreLoadingView {
+   public interface IMovieLongCommentView extends ICoreLoadingView {
 
-        void addMovieLongComment(List<MovieLongCommentBeanList.DataBean.FilmReviewsBean> filmReviews);
+      void addMovieLongComment(List<MovieLongCommentBeanList.DataBean.FilmReviewsBean> filmReviews);
 
-        void loadMoreError(String message);
-    }
-    public interface IMovieLongCommentPresenter{
-        void getMovieLongComment(int movieId,int offset);
-        void getMoreMovieLongComment(int movieId,int offset);
-    }
+      void loadMoreError(String message);
+   }
+
+   public interface IMovieLongCommentPresenter {
+      void getMovieLongComment(int movieId, int offset);
+
+      void getMoreMovieLongComment(int movieId, int offset);
+   }
 }

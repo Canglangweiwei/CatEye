@@ -5,17 +5,17 @@ package com.cicinnus.cateye.module.movie.movie_video.RxBusPostBean;
  */
 
 public class CommentCountPostBean {
-    private int commentCount;
+   private int commentCount;
 
-    public CommentCountPostBean(int commentCount) {
-        this.commentCount = commentCount;
-    }
+   public CommentCountPostBean(int commentCount) {
+      this.commentCount = commentCount;
+   }
 
-    public int getCommentCount() {
-        return commentCount;
-    }
+   public int getCommentCount() {
+      return commentCount;
+   }
 
-    public void setCommentCount(int commentCount) {
-        this.commentCount = commentCount;
-    }
+   public void setCommentCount(int commentCount) {
+      this.commentCount = commentCount;
+   }
 }

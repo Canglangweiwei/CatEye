@@ -9,20 +9,20 @@ import java.util.List;
  */
 
 public class VideoCommentListContract {
-    public interface IVideoCommentListView extends ICoreLoadingView {
+   public interface IVideoCommentListView extends ICoreLoadingView {
 
-        void addVideoCommentList(List<VideoCommentListBean.DataBean.CommentsBean> comments);
+      void addVideoCommentList(List<VideoCommentListBean.DataBean.CommentsBean> comments);
 
-        void addVideoCommentCount(int total);
+      void addVideoCommentCount(int total);
 
-        void addMoreVideoComment(List<VideoCommentListBean.DataBean.CommentsBean> comments);
+      void addMoreVideoComment(List<VideoCommentListBean.DataBean.CommentsBean> comments);
 
-        void loadMoreError(String message);
-    }
+      void loadMoreError(String message);
+   }
 
-    public interface IVideoCommentListPresenter{
-        void getVideoCommentList(int movieId,int offset);
+   public interface IVideoCommentListPresenter {
+      void getVideoCommentList(int movieId, int offset);
 
-        void getMoreVideoComment(int movieId, int offset);
-    }
+      void getMoreVideoComment(int movieId, int offset);
+   }
 }

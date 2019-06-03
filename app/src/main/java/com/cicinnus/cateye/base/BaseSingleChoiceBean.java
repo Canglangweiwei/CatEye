@@ -5,7 +5,7 @@ package com.cicinnus.cateye.base;
  */
 
 public class BaseSingleChoiceBean {
-    public String content;
-    public int id;
-    public boolean isSelect;
+   public String content;
+   public int id;
+   public boolean isSelect;
 }

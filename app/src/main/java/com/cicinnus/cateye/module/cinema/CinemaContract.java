@@ -12,29 +12,29 @@ import java.util.List;
  */
 
 public class CinemaContract {
-    public interface ICinemaView extends ICoreLoadingView{
-        void addCinema(List<CinemaListBean.DataBean.CinemasBean> cinemas);
+   public interface ICinemaView extends ICoreLoadingView {
+      void addCinema(List<CinemaListBean.DataBean.CinemasBean> cinemas);
 
-        void addMoreCinema(List<CinemaListBean.DataBean.CinemasBean> cinemas);
+      void addMoreCinema(List<CinemaListBean.DataBean.CinemasBean> cinemas);
 
-        void addMoreCinemaFail(String errMsg);
+      void addMoreCinemaFail(String errMsg);
 
-        void addCinemaBanner(List<CinemaBannerBean.DataBean> data);
+      void addCinemaBanner(List<CinemaBannerBean.DataBean> data);
 
-        void addFilter(FilterBean filterBean);
-    }
+      void addFilter(FilterBean filterBean);
+   }
 
-    public interface ICinemaPresenter{
+   public interface ICinemaPresenter {
 
-        void getCinema(int cityId, int offset, int limit, double lat, double lng,int districtId,int areaId,String sort,
-                       int lineId,int stationId,int brandId,int serviceId,int hallType);
+      void getCinema(int cityId, int offset, int limit, double lat, double lng, int districtId, int areaId, String sort,
+                     int lineId, int stationId, int brandId, int serviceId, int hallType);
 
-        void getMoreCinema(int cityId, int offset, int limit, double lat, double lng,int districtId,int areaId,String sort,
-                           int lineId,int stationId,int brandId,int serviceId,int hallType);
+      void getMoreCinema(int cityId, int offset, int limit, double lat, double lng, int districtId, int areaId, String sort,
+                         int lineId, int stationId, int brandId, int serviceId, int hallType);
 
-        void getBanner(int cityId);
+      void getBanner(int cityId);
 
-        void getFilter(int cityId);
+      void getFilter(int cityId);
 
-    }
+   }
 }

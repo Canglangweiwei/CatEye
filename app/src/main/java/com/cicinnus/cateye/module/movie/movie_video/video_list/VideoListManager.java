@@ -12,27 +12,28 @@ import io.reactivex.Observable;
 public class VideoListManager {
 
 
-    /**
-     * 视频列表
-     * @param movieId
-     * @param offset
-     * @return
-     */
-    public Observable<VideoListBean> getVideoList(int movieId,int offset){
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getVideoList(movieId,10,offset)
-                .compose(SchedulersCompat.<VideoListBean>applyIoSchedulers());
-    }
+   /**
+    * 视频列表
+    *
+    * @param movieId
+    * @param offset
+    * @return
+    */
+   public Observable<VideoListBean> getVideoList(int movieId, int offset) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getVideoList(movieId, 10, offset)
+          .compose(SchedulersCompat.<VideoListBean>applyIoSchedulers());
+   }
 
-    public Observable<VideoMovieInfoBean> getVideoMovieInfo(int movieId){
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getVideoMovieInfo(movieId)
-                .compose(SchedulersCompat.<VideoMovieInfoBean>applyIoSchedulers());
-    }
+   public Observable<VideoMovieInfoBean> getVideoMovieInfo(int movieId) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getVideoMovieInfo(movieId)
+          .compose(SchedulersCompat.<VideoMovieInfoBean>applyIoSchedulers());
+   }
 
 
 }

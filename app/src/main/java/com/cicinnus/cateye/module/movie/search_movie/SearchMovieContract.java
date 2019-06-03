@@ -10,24 +10,24 @@ import java.util.List;
  */
 
 public class SearchMovieContract {
-    public interface ISearchMovieView extends ICoreLoadingView {
-        void addMovieType(List<MovieTypeBean.DataBean.TagListBean> tagList);
+   public interface ISearchMovieView extends ICoreLoadingView {
+      void addMovieType(List<MovieTypeBean.DataBean.TagListBean> tagList);
 
-        void addMovieNation(List<MovieTypeBean.DataBean.TagListBean> tagList);
+      void addMovieNation(List<MovieTypeBean.DataBean.TagListBean> tagList);
 
-        void addMoviePeriod(List<MovieTypeBean.DataBean.TagListBean> tagList);
+      void addMoviePeriod(List<MovieTypeBean.DataBean.TagListBean> tagList);
 
-        void addMoviePoint(List<MovieTypeBean.DataBean.TagListBean> tagList);
+      void addMoviePoint(List<MovieTypeBean.DataBean.TagListBean> tagList);
 
-        void addClassifySearchData(List<ClassifySearchBean.ListBean> list);
+      void addClassifySearchData(List<ClassifySearchBean.ListBean> list);
 
-    }
+   }
 
-    public interface ISearchMoviePresenter {
-        void getMovieTypeList();
+   public interface ISearchMoviePresenter {
+      void getMovieTypeList();
 
-        void getClassifySearchList(int offset,int catId,int sourceId,int yearId,int sortId);
+      void getClassifySearchList(int offset, int catId, int sourceId, int yearId, int sortId);
 
 
-    }
+   }
 }

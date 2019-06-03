@@ -19,21 +19,21 @@ import java.util.List;
 
 public class TrailerRecommendAdapter extends BaseQuickAdapter<TrailerRecommendBean.DataBean, BaseViewHolder> {
 
-    public TrailerRecommendAdapter(@Nullable List<TrailerRecommendBean.DataBean> data) {
-        super(R.layout.item_wait_movie_trailer_recommend, data);
-    }
+   public TrailerRecommendAdapter(@Nullable List<TrailerRecommendBean.DataBean> data) {
+      super(R.layout.item_wait_movie_trailer_recommend, data);
+   }
 
-    @Override
-    protected void convert(final BaseViewHolder helper, final TrailerRecommendBean.DataBean item) {
-        GlideManager.loadImage(mContext, item.getImg() + ".webp@405w_225h_1e_1c_1l", (ImageView) helper.getView(R.id.iv_trailer_recommend));
-        helper.setText(R.id.tv_trailer_movie_title, item.getMovieName())
-                .setText(R.id.tv_trailer_movie_desc, item.getName());
+   @Override
+   protected void convert(final BaseViewHolder helper, final TrailerRecommendBean.DataBean item) {
+      GlideManager.loadImage(mContext, item.getImg() + ".webp@405w_225h_1e_1c_1l", (ImageView) helper.getView(R.id.iv_trailer_recommend));
+      helper.setText(R.id.tv_trailer_movie_title, item.getMovieName())
+          .setText(R.id.tv_trailer_movie_desc, item.getName());
 
-        helper.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MovieVideoActivity.start(mContext, item.getMovieId(), item.getVideoId(), item.getName(), item.getUrl());
-            }
-        });
-    }
+      helper.itemView.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+            MovieVideoActivity.start(mContext, item.getMovieId(), item.getVideoId(), item.getName(), item.getUrl());
+         }
+      });
+   }
 }

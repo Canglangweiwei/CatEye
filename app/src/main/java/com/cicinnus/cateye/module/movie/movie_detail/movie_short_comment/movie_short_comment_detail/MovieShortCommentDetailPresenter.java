@@ -17,34 +17,34 @@ import io.reactivex.functions.Consumer;
 
 public class MovieShortCommentDetailPresenter extends BaseMVPPresenter<MovieShortCommentDetailContract.IMovieShortCommentDetailView> implements MovieShortCommentDetailContract.IMovieShortCommentDetailPresenter {
 
-    private final MovieShortCommentDetailManager detailManager;
+   private final MovieShortCommentDetailManager detailManager;
 
-    public MovieShortCommentDetailPresenter(Activity activity, MovieShortCommentDetailContract.IMovieShortCommentDetailView view) {
-        super(activity, view);
-        detailManager = new MovieShortCommentDetailManager();
-    }
+   public MovieShortCommentDetailPresenter(Activity activity, MovieShortCommentDetailContract.IMovieShortCommentDetailView view) {
+      super(activity, view);
+      detailManager = new MovieShortCommentDetailManager();
+   }
 
-    @Override
-    public void getShortCommentList(int id, int limit, int offset) {
-        mView.showLoading();
-        addSubscribeUntilDestroy(detailManager.getMovieShortCommentDetail(id, limit, offset)
-                .compose(SchedulersCompat.<MovieShortCommentDetailBean>applyIoSchedulers())
-                .subscribe(new Consumer<MovieShortCommentDetailBean>() {
-                    @Override
-                    public void accept(@NonNull MovieShortCommentDetailBean movieShortCommentDetailBean) throws Exception {
-                        mView.addShortCommentDetail(movieShortCommentDetailBean);
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(@NonNull Throwable throwable) throws Exception {
-                        Logger.e(throwable.getMessage());
-                        mView.showError(ExceptionHandle.handleException(throwable));
-                    }
-                }, new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        mView.showContent();
-                    }
-                }));
-    }
+   @Override
+   public void getShortCommentList(int id, int limit, int offset) {
+      mView.showLoading();
+      addSubscribeUntilDestroy(detailManager.getMovieShortCommentDetail(id, limit, offset)
+          .compose(SchedulersCompat.<MovieShortCommentDetailBean>applyIoSchedulers())
+          .subscribe(new Consumer<MovieShortCommentDetailBean>() {
+             @Override
+             public void accept(@NonNull MovieShortCommentDetailBean movieShortCommentDetailBean) throws Exception {
+                mView.addShortCommentDetail(movieShortCommentDetailBean);
+             }
+          }, new Consumer<Throwable>() {
+             @Override
+             public void accept(@NonNull Throwable throwable) throws Exception {
+                Logger.e(throwable.getMessage());
+                mView.showError(ExceptionHandle.handleException(throwable));
+             }
+          }, new Action() {
+             @Override
+             public void run() throws Exception {
+                mView.showContent();
+             }
+          }));
+   }
 }

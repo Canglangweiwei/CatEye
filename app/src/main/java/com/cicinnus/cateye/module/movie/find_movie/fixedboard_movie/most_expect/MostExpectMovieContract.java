@@ -7,14 +7,14 @@ import com.cicinnus.retrofitlib.base.ICoreLoadingView;
  */
 
 public class MostExpectMovieContract {
-    public interface IRecentExpectMovieView extends ICoreLoadingView {
-        void addRecentExpectMovie(MostExpectMovieBean.DataBean movies);
+   public interface IRecentExpectMovieView extends ICoreLoadingView {
+      void addRecentExpectMovie(MostExpectMovieBean.DataBean movies);
 
-        void addData(String content, String date);
-    }
+      void addData(String content, String date);
+   }
 
-    public interface IRecentExpectMoviePresenter{
+   public interface IRecentExpectMoviePresenter {
 
-        void getRecentExpectMovie(int offset);
-    }
+      void getRecentExpectMovie(int offset);
+   }
 }

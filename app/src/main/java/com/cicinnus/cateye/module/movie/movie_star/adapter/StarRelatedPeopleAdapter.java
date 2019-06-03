@@ -15,23 +15,23 @@ import com.cicinnus.cateye.tools.ImgSizeUtil;
  * Created by Cicinnus on 2017/2/19.
  */
 
-public class StarRelatedPeopleAdapter extends BaseQuickAdapter<StarRelatedPeople.DataBean.RelationsBean,BaseViewHolder> {
-    public StarRelatedPeopleAdapter() {
-        super(R.layout.item_related_star, null);
-    }
+public class StarRelatedPeopleAdapter extends BaseQuickAdapter<StarRelatedPeople.DataBean.RelationsBean, BaseViewHolder> {
+   public StarRelatedPeopleAdapter() {
+      super(R.layout.item_related_star, null);
+   }
 
-    @Override
-    protected void convert(BaseViewHolder helper, final StarRelatedPeople.DataBean.RelationsBean item) {
-        helper.setText(R.id.tv_related_star_name,item.getName())
-                .setText(R.id.tv_cooperate_time,item.getRelation());
-        String imgUrl = ImgSizeUtil.processUrl(item.getAvatar(),255,345);
-        GlideManager.loadImage(mContext,imgUrl, (ImageView) helper.getView(R.id.iv_related_star));
+   @Override
+   protected void convert(BaseViewHolder helper, final StarRelatedPeople.DataBean.RelationsBean item) {
+      helper.setText(R.id.tv_related_star_name, item.getName())
+          .setText(R.id.tv_cooperate_time, item.getRelation());
+      String imgUrl = ImgSizeUtil.processUrl(item.getAvatar(), 255, 345);
+      GlideManager.loadImage(mContext, imgUrl, (ImageView) helper.getView(R.id.iv_related_star));
 
-        helper.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MovieStarActivity.start(mContext,item.getId());
-            }
-        });
-    }
+      helper.itemView.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+            MovieStarActivity.start(mContext, item.getId());
+         }
+      });
+   }
 }

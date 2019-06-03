@@ -18,41 +18,41 @@ import io.reactivex.functions.Consumer;
 
 public class MovieSoundTrackMVPPresenter extends com.cicinnus.retrofitlib.base.BaseMVPPresenter<MovieSoundTrackContract.IMovieSoundTrackView> implements MovieSoundTrackContract.IMovieSoundTrackPresenter {
 
-    private final MovieSoundTrackManager movieSoundTrackManager;
+   private final MovieSoundTrackManager movieSoundTrackManager;
 
-    public MovieSoundTrackMVPPresenter(Activity activity, MovieSoundTrackContract.IMovieSoundTrackView view) {
-        super(activity, view);
-        movieSoundTrackManager = new MovieSoundTrackManager();
-    }
+   public MovieSoundTrackMVPPresenter(Activity activity, MovieSoundTrackContract.IMovieSoundTrackView view) {
+      super(activity, view);
+      movieSoundTrackManager = new MovieSoundTrackManager();
+   }
 
-    @Override
-    public void getMovieSoundTrack(int movieId) {
-        mView.showLoading();
-        addSubscribeUntilDestroy(Observable.merge(
-                movieSoundTrackManager.getMovieAlbum(movieId),
-                movieSoundTrackManager.getMovieMusic(movieId))
-                .compose(SchedulersCompat.applyIoSchedulers())
-                .subscribe(new Consumer<Object>() {
-                    @Override
-                    public void accept(@NonNull Object o) throws Exception {
-                        if(o instanceof MovieAlbumBean){
-                            mView.addMovieAlbum(((MovieAlbumBean) o).getData());
-                        }else if(o instanceof MovieMusicBean){
-                            mView.addMovieMusic(((MovieMusicBean) o).getData());
-                        }
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(@NonNull Throwable throwable) throws Exception {
-                        mView.showError(throwable.getMessage());
+   @Override
+   public void getMovieSoundTrack(int movieId) {
+      mView.showLoading();
+      addSubscribeUntilDestroy(Observable.merge(
+          movieSoundTrackManager.getMovieAlbum(movieId),
+          movieSoundTrackManager.getMovieMusic(movieId))
+          .compose(SchedulersCompat.applyIoSchedulers())
+          .subscribe(new Consumer<Object>() {
+             @Override
+             public void accept(@NonNull Object o) throws Exception {
+                if (o instanceof MovieAlbumBean) {
+                   mView.addMovieAlbum(((MovieAlbumBean) o).getData());
+                } else if (o instanceof MovieMusicBean) {
+                   mView.addMovieMusic(((MovieMusicBean) o).getData());
+                }
+             }
+          }, new Consumer<Throwable>() {
+             @Override
+             public void accept(@NonNull Throwable throwable) throws Exception {
+                mView.showError(throwable.getMessage());
 
-                    }
-                }, new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        mView.showContent();
+             }
+          }, new Action() {
+             @Override
+             public void run() throws Exception {
+                mView.showContent();
 
-                    }
-                }));
-    }
+             }
+          }));
+   }
 }

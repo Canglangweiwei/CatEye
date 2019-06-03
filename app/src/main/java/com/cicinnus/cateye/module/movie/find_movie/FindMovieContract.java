@@ -13,20 +13,20 @@ import java.util.List;
 
 public class FindMovieContract {
 
-    public interface IFindMovieView extends ICoreLoadingView {
-        void addMovieType(List<MovieTypeBean.DataBean.TagListBean> tagList);
+   public interface IFindMovieView extends ICoreLoadingView {
+      void addMovieType(List<MovieTypeBean.DataBean.TagListBean> tagList);
 
-        void addMovieNation(List<MovieTypeBean.DataBean.TagListBean> tagList);
+      void addMovieNation(List<MovieTypeBean.DataBean.TagListBean> tagList);
 
-        void addMoviePeriod(List<MovieTypeBean.DataBean.TagListBean> tagList);
+      void addMoviePeriod(List<MovieTypeBean.DataBean.TagListBean> tagList);
 
-        void addMovieGrid(List<GridMovieBean.DataBean> data);
+      void addMovieGrid(List<GridMovieBean.DataBean> data);
 
-        void addAwardsMovie(List<AwardsMovieBean.DataBean> data);
-    }
+      void addAwardsMovie(List<AwardsMovieBean.DataBean> data);
+   }
 
-    public interface IFindMoviePresenter {
-        void getFindMovieData();
+   public interface IFindMoviePresenter {
+      void getFindMovieData();
 
-    }
+   }
 }

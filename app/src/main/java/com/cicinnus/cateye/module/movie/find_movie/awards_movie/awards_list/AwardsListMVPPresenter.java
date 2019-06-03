@@ -14,35 +14,35 @@ import io.reactivex.functions.Consumer;
 
 public class AwardsListMVPPresenter extends com.cicinnus.retrofitlib.base.BaseMVPPresenter<AwardsListContract.IAwardsListView> implements AwardsListContract.IAwardsListPresenter {
 
-    private final AwardsListManager awardsListManager;
+   private final AwardsListManager awardsListManager;
 
-    public AwardsListMVPPresenter(Activity activity, AwardsListContract.IAwardsListView view) {
-        super(activity, view);
-        awardsListManager = new AwardsListManager();
-    }
+   public AwardsListMVPPresenter(Activity activity, AwardsListContract.IAwardsListView view) {
+      super(activity, view);
+      awardsListManager = new AwardsListManager();
+   }
 
-    @Override
-    public void getAwardsList() {
-        mView.showLoading();
-        addSubscribeUntilDestroy(awardsListManager.getAwardsList()
-                .subscribe(new Consumer<AwardsListBean>() {
-                    @Override
-                    public void accept(@NonNull AwardsListBean awardsListBean) throws Exception {
-                        mView.addAwardsList(awardsListBean.getData());
+   @Override
+   public void getAwardsList() {
+      mView.showLoading();
+      addSubscribeUntilDestroy(awardsListManager.getAwardsList()
+          .subscribe(new Consumer<AwardsListBean>() {
+             @Override
+             public void accept(@NonNull AwardsListBean awardsListBean) throws Exception {
+                mView.addAwardsList(awardsListBean.getData());
 
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(@NonNull Throwable throwable) throws Exception {
-                        mView.showError(ExceptionHandle.handleException(throwable));
+             }
+          }, new Consumer<Throwable>() {
+             @Override
+             public void accept(@NonNull Throwable throwable) throws Exception {
+                mView.showError(ExceptionHandle.handleException(throwable));
 
-                    }
-                }, new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        mView.showContent();
+             }
+          }, new Action() {
+             @Override
+             public void run() throws Exception {
+                mView.showContent();
 
-                    }
-                }));
-    }
+             }
+          }));
+   }
 }

@@ -8,13 +8,13 @@ import com.cicinnus.cateye.R;
  * Created by Administrator on 2017/2/13.
  */
 
-public class MovieAwardsAdapter extends BaseQuickAdapter<String,BaseViewHolder> {
-    public MovieAwardsAdapter() {
-        super(R.layout.item_movie_awards,null);
-    }
+public class MovieAwardsAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
+   public MovieAwardsAdapter() {
+      super(R.layout.item_movie_awards, null);
+   }
 
-    @Override
-    protected void convert(BaseViewHolder helper, String item) {
-        helper.setText(R.id.tv_award_name,item);
-    }
+   @Override
+   protected void convert(BaseViewHolder helper, String item) {
+      helper.setText(R.id.tv_award_name, item);
+   }
 }

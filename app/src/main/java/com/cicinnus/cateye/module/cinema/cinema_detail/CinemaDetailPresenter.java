@@ -21,42 +21,42 @@ import io.reactivex.functions.Consumer;
 
 public class CinemaDetailPresenter extends BaseMVPPresenter<CinemaDetailContract.ICinemaDetailView> implements CinemaDetailContract.ICinemaDetailPresenter {
 
-    private final CinemaDetailManager cinemaDetailManager;
+   private final CinemaDetailManager cinemaDetailManager;
 
-    public CinemaDetailPresenter(Activity activity, CinemaDetailContract.ICinemaDetailView view) {
-        super(activity, view);
-        cinemaDetailManager = new CinemaDetailManager();
-    }
+   public CinemaDetailPresenter(Activity activity, CinemaDetailContract.ICinemaDetailView view) {
+      super(activity, view);
+      cinemaDetailManager = new CinemaDetailManager();
+   }
 
-    @Override
-    public void getCinema(int cinemaId) {
-        mView.showLoading();
-        addSubscribeUntilDestroy(Observable.mergeDelayError(cinemaDetailManager.getCinemaMovie(cinemaId),
-                cinemaDetailManager.getCinemaData(cinemaId),
-                cinemaDetailManager.getFoods(cinemaId))
-        .compose(SchedulersCompat.applyIoSchedulers())
-        .subscribe(new Consumer<Object>() {
-            @Override
-            public void accept(@NonNull Object o) throws Exception {
-                if(o instanceof CinemaMovieBean) {
-                    mView.addCinemaMovies(((CinemaMovieBean) o).getData().getMovies());
-                }else if(o instanceof CinemaBean){
-                    mView.addCinemaData(((CinemaBean) o).getData());
-                }else if(o instanceof FoodsBean){
-                    mView.addFoods(((FoodsBean) o).getData().getDealList());
+   @Override
+   public void getCinema(int cinemaId) {
+      mView.showLoading();
+      addSubscribeUntilDestroy(Observable.mergeDelayError(cinemaDetailManager.getCinemaMovie(cinemaId),
+          cinemaDetailManager.getCinemaData(cinemaId),
+          cinemaDetailManager.getFoods(cinemaId))
+          .compose(SchedulersCompat.applyIoSchedulers())
+          .subscribe(new Consumer<Object>() {
+             @Override
+             public void accept(@NonNull Object o) throws Exception {
+                if (o instanceof CinemaMovieBean) {
+                   mView.addCinemaMovies(((CinemaMovieBean) o).getData().getMovies());
+                } else if (o instanceof CinemaBean) {
+                   mView.addCinemaData(((CinemaBean) o).getData());
+                } else if (o instanceof FoodsBean) {
+                   mView.addFoods(((FoodsBean) o).getData().getDealList());
                 }
-            }
-        }, new Consumer<Throwable>() {
-            @Override
-            public void accept(@NonNull Throwable throwable) throws Exception {
+             }
+          }, new Consumer<Throwable>() {
+             @Override
+             public void accept(@NonNull Throwable throwable) throws Exception {
                 Logger.e(throwable.getMessage());
                 mView.showError(ExceptionHandle.handleException(throwable));
-            }
-        }, new Action() {
-            @Override
-            public void run() throws Exception {
+             }
+          }, new Action() {
+             @Override
+             public void run() throws Exception {
                 mView.showContent();
-            }
-        }));
-    }
+             }
+          }));
+   }
 }

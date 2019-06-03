@@ -9,23 +9,23 @@ import java.util.List;
  */
 
 public class VideoListContract {
-    public interface IVideoListView extends ICoreLoadingView {
-        void addVideoList(List<VideoListBean.DataBean> data);
+   public interface IVideoListView extends ICoreLoadingView {
+      void addVideoList(List<VideoListBean.DataBean> data);
 
-        void addVideoMovieInfo(VideoMovieInfoBean.DataBean videoMovieInfoBeanData);
+      void addVideoMovieInfo(VideoMovieInfoBean.DataBean videoMovieInfoBeanData);
 
-        void addTotalCount(int total);
+      void addTotalCount(int total);
 
-        void addVideoMoreList(List<VideoListBean.DataBean> videoMoreData);
+      void addVideoMoreList(List<VideoListBean.DataBean> videoMoreData);
 
-        void showLoadMoreError(String message);
-    }
+      void showLoadMoreError(String message);
+   }
 
-    public interface IVideoListPresenter{
-        void getVideoList(int movieId,int offset);
+   public interface IVideoListPresenter {
+      void getVideoList(int movieId, int offset);
 
-        void getVideoMovieInfo(int movieId);
+      void getVideoMovieInfo(int movieId);
 
-        void getMoreVideo(int movieId, int offset);
-    }
+      void getMoreVideo(int movieId, int offset);
+   }
 }

@@ -35,169 +35,169 @@ import butterknife.OnClick;
 public class FindMovieMVPFragment extends BaseMVPFragment<FindMovieMVPPresenter> implements FindMovieContract.IFindMovieView {
 
 
-    private MyPullToRefreshListener pullToRefreshListener;
+   private MyPullToRefreshListener pullToRefreshListener;
 
-    public static FindMovieMVPFragment newInstance() {
-        return new FindMovieMVPFragment();
-    }
+   public static FindMovieMVPFragment newInstance() {
+      return new FindMovieMVPFragment();
+   }
 
-    @BindView(R.id.swipe)
-    SuperSwipeRefreshLayout swipe;
-    @BindView(R.id.tv_search_content)
-    TextView tvSearchContent;
-    @BindView(R.id.progressLayout)
-    ProgressLayout progressLayout;
-    @BindView(R.id.rv_movie_type)
-    RecyclerView rvMovieType;
-    @BindView(R.id.rv_movie_nation)
-    RecyclerView rvMovieNation;
-    @BindView(R.id.rv_movie_period)
-    RecyclerView rvMoviePeriod;
-    @BindView(R.id.rv_find_movie_grid)
-    RecyclerView rvFindMovieGrid;//热映口碑
-    @BindView(R.id.rv_movie_awards)
-    RecyclerView rvMovieAwards;//获奖电影
+   @BindView(R.id.swipe)
+   SuperSwipeRefreshLayout swipe;
+   @BindView(R.id.tv_search_content)
+   TextView tvSearchContent;
+   @BindView(R.id.progressLayout)
+   ProgressLayout progressLayout;
+   @BindView(R.id.rv_movie_type)
+   RecyclerView rvMovieType;
+   @BindView(R.id.rv_movie_nation)
+   RecyclerView rvMovieNation;
+   @BindView(R.id.rv_movie_period)
+   RecyclerView rvMoviePeriod;
+   @BindView(R.id.rv_find_movie_grid)
+   RecyclerView rvFindMovieGrid;//热映口碑
+   @BindView(R.id.rv_movie_awards)
+   RecyclerView rvMovieAwards;//获奖电影
 
-    private FindMovieTypeAdapter findMovieTypeAdapter;
-    private FindMovieNationAdapter findMovieNationAdapter;
-    private FindMoviePeriodAdapter findMoviePeriodAdapter;
-    private FindMovieGridADapter findMovieGridADapter;
-    private AwardsMovieAdapter awardsMovieAdapter;
+   private FindMovieTypeAdapter findMovieTypeAdapter;
+   private FindMovieNationAdapter findMovieNationAdapter;
+   private FindMoviePeriodAdapter findMoviePeriodAdapter;
+   private FindMovieGridADapter findMovieGridADapter;
+   private AwardsMovieAdapter awardsMovieAdapter;
 
-    private boolean isFirst = true;
+   private boolean isFirst = true;
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_find_movie;
-    }
+   @Override
+   protected int getLayoutId() {
+      return R.layout.fragment_find_movie;
+   }
 
-    @Override
-    protected FindMovieMVPPresenter getPresenter() {
-        return new FindMovieMVPPresenter(mContext, this);
-    }
+   @Override
+   protected FindMovieMVPPresenter getPresenter() {
+      return new FindMovieMVPPresenter(mContext, this);
+   }
 
-    @Override
-    protected void initEventAndData() {
-        tvSearchContent.setText(String.format("%s", "找影片、影人、影院"));
-        initMovieTypeList();
-        pullToRefreshListener = new MyPullToRefreshListener(mContext, swipe);
-        swipe.setOnPullRefreshListener(pullToRefreshListener);
-        pullToRefreshListener.setOnRefreshListener(new MyPullToRefreshListener.OnRefreshListener() {
-            @Override
-            public void refresh() {
-                mPresenter.getFindMovieData();
-            }
-        });
-    }
-
-    @Override
-    protected void lazyLoadEveryTime() {
-        if (isFirst) {
+   @Override
+   protected void initEventAndData() {
+      tvSearchContent.setText(String.format("%s", "找影片、影人、影院"));
+      initMovieTypeList();
+      pullToRefreshListener = new MyPullToRefreshListener(mContext, swipe);
+      swipe.setOnPullRefreshListener(pullToRefreshListener);
+      pullToRefreshListener.setOnRefreshListener(new MyPullToRefreshListener.OnRefreshListener() {
+         @Override
+         public void refresh() {
             mPresenter.getFindMovieData();
-            isFirst = false;
-        }
-    }
+         }
+      });
+   }
 
-    @OnClick({R.id.tv_all_awards})
-    void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.tv_all_awards:
-                AwardsListActivity.start(mContext, true);
-                break;
-        }
-    }
+   @Override
+   protected void lazyLoadEveryTime() {
+      if (isFirst) {
+         mPresenter.getFindMovieData();
+         isFirst = false;
+      }
+   }
 
-    /**
-     * 初始化RecyclerView相关
-     */
-    private void initMovieTypeList() {
-        // 电影类型
-        findMovieTypeAdapter = new FindMovieTypeAdapter();
-        rvMovieType.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
-        rvMovieType.setAdapter(findMovieTypeAdapter);
-        View head_type = mContext.getLayoutInflater().inflate(R.layout.layout_normal_tv, (ViewGroup) rvMovieType.getParent(), false);
-        ((TextView) head_type.findViewById(R.id.tv_content)).setText("类型");
-        findMovieTypeAdapter.addHeaderView(head_type, 0, LinearLayout.HORIZONTAL);
+   @OnClick({R.id.tv_all_awards})
+   void onClick(View view) {
+      switch (view.getId()) {
+         case R.id.tv_all_awards:
+            AwardsListActivity.start(mContext, true);
+            break;
+      }
+   }
 
-        // 地区
-        findMovieNationAdapter = new FindMovieNationAdapter();
-        rvMovieNation.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
-        rvMovieNation.setAdapter(findMovieNationAdapter);
-        View head_nation = mContext.getLayoutInflater().inflate(R.layout.layout_normal_tv, (ViewGroup) rvMovieNation.getParent(), false);
-        ((TextView) head_nation.findViewById(R.id.tv_content)).setText("地区");
-        findMovieNationAdapter.addHeaderView(head_nation, 0, LinearLayout.HORIZONTAL);
-        // 年代
-        findMoviePeriodAdapter = new FindMoviePeriodAdapter();
-        rvMoviePeriod.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
-        rvMoviePeriod.setAdapter(findMoviePeriodAdapter);
-        View head_period = mContext.getLayoutInflater().inflate(R.layout.layout_normal_tv, (ViewGroup) rvMoviePeriod.getParent(), false);
-        ((TextView) head_period.findViewById(R.id.tv_content)).setText("年代");
-        findMoviePeriodAdapter.addHeaderView(head_period, 0, LinearLayout.HORIZONTAL);
+   /**
+    * 初始化RecyclerView相关
+    */
+   private void initMovieTypeList() {
+      // 电影类型
+      findMovieTypeAdapter = new FindMovieTypeAdapter();
+      rvMovieType.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
+      rvMovieType.setAdapter(findMovieTypeAdapter);
+      View head_type = mContext.getLayoutInflater().inflate(R.layout.layout_normal_tv, (ViewGroup) rvMovieType.getParent(), false);
+      ((TextView) head_type.findViewById(R.id.tv_content)).setText("类型");
+      findMovieTypeAdapter.addHeaderView(head_type, 0, LinearLayout.HORIZONTAL);
 
-        // 表格RecyclerView
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 2);
-        rvFindMovieGrid.setLayoutManager(gridLayoutManager);
-        findMovieGridADapter = new FindMovieGridADapter();
-        rvFindMovieGrid.setAdapter(findMovieGridADapter);
-        rvFindMovieGrid.setNestedScrollingEnabled(false);//禁止滑动
-        // 获奖电影
-        awardsMovieAdapter = new AwardsMovieAdapter();
-        rvMovieAwards.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
-        rvMovieAwards.setAdapter(awardsMovieAdapter);
-    }
+      // 地区
+      findMovieNationAdapter = new FindMovieNationAdapter();
+      rvMovieNation.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
+      rvMovieNation.setAdapter(findMovieNationAdapter);
+      View head_nation = mContext.getLayoutInflater().inflate(R.layout.layout_normal_tv, (ViewGroup) rvMovieNation.getParent(), false);
+      ((TextView) head_nation.findViewById(R.id.tv_content)).setText("地区");
+      findMovieNationAdapter.addHeaderView(head_nation, 0, LinearLayout.HORIZONTAL);
+      // 年代
+      findMoviePeriodAdapter = new FindMoviePeriodAdapter();
+      rvMoviePeriod.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
+      rvMoviePeriod.setAdapter(findMoviePeriodAdapter);
+      View head_period = mContext.getLayoutInflater().inflate(R.layout.layout_normal_tv, (ViewGroup) rvMoviePeriod.getParent(), false);
+      ((TextView) head_period.findViewById(R.id.tv_content)).setText("年代");
+      findMoviePeriodAdapter.addHeaderView(head_period, 0, LinearLayout.HORIZONTAL);
 
-    @Override
-    public void addMovieType(List<MovieTypeBean.DataBean.TagListBean> tagList) {
-        findMovieTypeAdapter.setNewData(tagList);
-    }
+      // 表格RecyclerView
+      GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 2);
+      rvFindMovieGrid.setLayoutManager(gridLayoutManager);
+      findMovieGridADapter = new FindMovieGridADapter();
+      rvFindMovieGrid.setAdapter(findMovieGridADapter);
+      rvFindMovieGrid.setNestedScrollingEnabled(false);//禁止滑动
+      // 获奖电影
+      awardsMovieAdapter = new AwardsMovieAdapter();
+      rvMovieAwards.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
+      rvMovieAwards.setAdapter(awardsMovieAdapter);
+   }
 
-    @Override
-    public void addMovieNation(List<MovieTypeBean.DataBean.TagListBean> tagList) {
-        findMovieNationAdapter.setNewData(tagList);
-    }
+   @Override
+   public void addMovieType(List<MovieTypeBean.DataBean.TagListBean> tagList) {
+      findMovieTypeAdapter.setNewData(tagList);
+   }
 
-    @Override
-    public void addMoviePeriod(List<MovieTypeBean.DataBean.TagListBean> tagList) {
-        findMoviePeriodAdapter.setNewData(tagList);
-    }
+   @Override
+   public void addMovieNation(List<MovieTypeBean.DataBean.TagListBean> tagList) {
+      findMovieNationAdapter.setNewData(tagList);
+   }
 
-    @Override
-    public void addMovieGrid(List<GridMovieBean.DataBean> data) {
-        findMovieGridADapter.setNewData(data);
-    }
+   @Override
+   public void addMoviePeriod(List<MovieTypeBean.DataBean.TagListBean> tagList) {
+      findMoviePeriodAdapter.setNewData(tagList);
+   }
 
-    @Override
-    public void addAwardsMovie(List<AwardsMovieBean.DataBean> data) {
-        awardsMovieAdapter.setNewData(data);
-    }
+   @Override
+   public void addMovieGrid(List<GridMovieBean.DataBean> data) {
+      findMovieGridADapter.setNewData(data);
+   }
 
-    @Override
-    public void showLoading() {
-        if (!progressLayout.isContent()) {
-            progressLayout.showLoading();
-            if (progressLayout.getVisibility() == View.INVISIBLE) {
-                progressLayout.setVisibility(View.VISIBLE);
-            }
-        }
-    }
+   @Override
+   public void addAwardsMovie(List<AwardsMovieBean.DataBean> data) {
+      awardsMovieAdapter.setNewData(data);
+   }
 
-    @Override
-    public void showContent() {
+   @Override
+   public void showLoading() {
+      if (!progressLayout.isContent()) {
+         progressLayout.showLoading();
+         if (progressLayout.getVisibility() == View.INVISIBLE) {
+            progressLayout.setVisibility(View.VISIBLE);
+         }
+      }
+   }
 
-        pullToRefreshListener.refreshDone();
-        if (!progressLayout.isContent()) {
-            progressLayout.showContent();
-        }
-    }
+   @Override
+   public void showContent() {
 
-    @Override
-    public void showError(String errorMsg) {
-        pullToRefreshListener.refreshDone();
-        progressLayout.showError(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mPresenter.getFindMovieData();
-            }
-        });
-    }
+      pullToRefreshListener.refreshDone();
+      if (!progressLayout.isContent()) {
+         progressLayout.showContent();
+      }
+   }
+
+   @Override
+   public void showError(String errorMsg) {
+      pullToRefreshListener.refreshDone();
+      progressLayout.showError(new View.OnClickListener() {
+         @Override
+         public void onClick(View view) {
+            mPresenter.getFindMovieData();
+         }
+      });
+   }
 }

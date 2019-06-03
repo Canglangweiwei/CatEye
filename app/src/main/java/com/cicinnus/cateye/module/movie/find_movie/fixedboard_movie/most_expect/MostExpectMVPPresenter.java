@@ -15,35 +15,35 @@ import io.reactivex.functions.Consumer;
 
 public class MostExpectMVPPresenter extends com.cicinnus.retrofitlib.base.BaseMVPPresenter<MostExpectMovieContract.IRecentExpectMovieView> implements MostExpectMovieContract.IRecentExpectMoviePresenter {
 
-    private final MostExpectMovieManager mostExpectMovieManager;
+   private final MostExpectMovieManager mostExpectMovieManager;
 
-    public MostExpectMVPPresenter(Activity activity, MostExpectMovieContract.IRecentExpectMovieView view) {
-        super(activity, view);
-        mostExpectMovieManager = new MostExpectMovieManager();
-    }
+   public MostExpectMVPPresenter(Activity activity, MostExpectMovieContract.IRecentExpectMovieView view) {
+      super(activity, view);
+      mostExpectMovieManager = new MostExpectMovieManager();
+   }
 
-    @Override
-    public void getRecentExpectMovie(int offset) {
-        mView.showLoading();
-        addSubscribeUntilDestroy(mostExpectMovieManager.getRecentExpectMovieList(offset)
-        .subscribe(new Consumer<MostExpectMovieBean>() {
-            @Override
-            public void accept(@NonNull MostExpectMovieBean mostExpectMovieBean) throws Exception {
-                mView.addData(mostExpectMovieBean.getData().getContent(),mostExpectMovieBean.getData().getCreated());
+   @Override
+   public void getRecentExpectMovie(int offset) {
+      mView.showLoading();
+      addSubscribeUntilDestroy(mostExpectMovieManager.getRecentExpectMovieList(offset)
+          .subscribe(new Consumer<MostExpectMovieBean>() {
+             @Override
+             public void accept(@NonNull MostExpectMovieBean mostExpectMovieBean) throws Exception {
+                mView.addData(mostExpectMovieBean.getData().getContent(), mostExpectMovieBean.getData().getCreated());
                 mView.addRecentExpectMovie(mostExpectMovieBean.getData());
-            }
-        }, new Consumer<Throwable>() {
-            @Override
-            public void accept(@NonNull Throwable throwable) throws Exception {
+             }
+          }, new Consumer<Throwable>() {
+             @Override
+             public void accept(@NonNull Throwable throwable) throws Exception {
                 mView.showError(ErrorHanding.handleError(throwable));
 
-            }
-        }, new Action() {
-            @Override
-            public void run() throws Exception {
+             }
+          }, new Action() {
+             @Override
+             public void run() throws Exception {
                 mView.showContent();
 
-            }
-        }));
-    }
+             }
+          }));
+   }
 }

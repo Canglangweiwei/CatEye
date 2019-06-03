@@ -9,15 +9,15 @@ import com.cicinnus.retrofitlib.base.ICoreLoadingView;
  */
 
 public class MovieSoundTrackContract {
-    public interface IMovieSoundTrackView extends ICoreLoadingView {
+   public interface IMovieSoundTrackView extends ICoreLoadingView {
 
-        void addMovieAlbum(MovieAlbumBean.DataBean movieAlbum);
+      void addMovieAlbum(MovieAlbumBean.DataBean movieAlbum);
 
-        void addMovieMusic(MovieMusicBean.DataBean movieMusic);
-    }
+      void addMovieMusic(MovieMusicBean.DataBean movieMusic);
+   }
 
-    public interface IMovieSoundTrackPresenter {
-        void getMovieSoundTrack(int movieId);
+   public interface IMovieSoundTrackPresenter {
+      void getMovieSoundTrack(int movieId);
 
-    }
+   }
 }

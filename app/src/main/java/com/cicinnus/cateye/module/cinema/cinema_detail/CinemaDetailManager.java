@@ -15,35 +15,35 @@ import io.reactivex.Observable;
  */
 
 public class CinemaDetailManager {
-    public Observable<CinemaMovieBean> getCinemaMovie(int cinemaId){
-        Map<String,Object> map = new HashMap<>();
-        map.put("cinemaId",cinemaId);
-        map.put("clientType","android");
-        map.put("channelId","1");
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getCinemaMovie(map);
-    }
+   public Observable<CinemaMovieBean> getCinemaMovie(int cinemaId) {
+      Map<String, Object> map = new HashMap<>();
+      map.put("cinemaId", cinemaId);
+      map.put("clientType", "android");
+      map.put("channelId", "1");
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getCinemaMovie(map);
+   }
 
-    public Observable<CinemaBean> getCinemaData(int cinemaId){
-        Map<String,Object> map = new HashMap<>();
-        map.put("cinemaId",cinemaId);
-        map.put("channelId",1);
-        map.put("utm_term","7.9.1");
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getCinemaData(map);
-    }
+   public Observable<CinemaBean> getCinemaData(int cinemaId) {
+      Map<String, Object> map = new HashMap<>();
+      map.put("cinemaId", cinemaId);
+      map.put("channelId", 1);
+      map.put("utm_term", "7.9.1");
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getCinemaData(map);
+   }
 
-    public Observable<FoodsBean> getFoods(int cinemaId){
-        Map<String,Object> map = new HashMap<>();
-        map.put("cinemaId",cinemaId);
-        map.put("channel",12);
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getFoods(map);
-    }
+   public Observable<FoodsBean> getFoods(int cinemaId) {
+      Map<String, Object> map = new HashMap<>();
+      map.put("cinemaId", cinemaId);
+      map.put("channel", 12);
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getFoods(map);
+   }
 }

@@ -11,11 +11,11 @@ import io.reactivex.Observable;
  */
 
 public class MovieLongCommentManager {
-    public Observable<MovieLongCommentBeanList> getMovieLongComment(int movieId, int offset){
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getMovieLongCommentList(movieId,10,offset)
-                .compose(SchedulersCompat.<MovieLongCommentBeanList>applyIoSchedulers());
-    }
+   public Observable<MovieLongCommentBeanList> getMovieLongComment(int movieId, int offset) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getMovieLongCommentList(movieId, 10, offset)
+          .compose(SchedulersCompat.<MovieLongCommentBeanList>applyIoSchedulers());
+   }
 }

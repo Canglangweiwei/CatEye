@@ -12,20 +12,20 @@ import io.reactivex.Observable;
  */
 
 public class SearchMovieManager {
-    //电影类型
-    public Observable<MovieTypeBean> getMovieTypeList() {
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getMovieTypeList()
-                .compose(SchedulersCompat.<MovieTypeBean>applyIoSchedulers());
-    }
+   //电影类型
+   public Observable<MovieTypeBean> getMovieTypeList() {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getMovieTypeList()
+          .compose(SchedulersCompat.<MovieTypeBean>applyIoSchedulers());
+   }
 
-    public Observable<ClassifySearchBean> getClassifySearchList(int offset,int catId,int sourceId,int yearId,int sortId){
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getClassifySearchList(10,offset,catId,sourceId,yearId,sortId)
-                .compose(SchedulersCompat.<ClassifySearchBean>applyIoSchedulers());
-    }
+   public Observable<ClassifySearchBean> getClassifySearchList(int offset, int catId, int sourceId, int yearId, int sortId) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getClassifySearchList(10, offset, catId, sourceId, yearId, sortId)
+          .compose(SchedulersCompat.<ClassifySearchBean>applyIoSchedulers());
+   }
 }

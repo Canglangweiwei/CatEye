@@ -11,19 +11,19 @@ import java.util.List;
  */
 
 public class MovieShortCommentContract {
-    public interface IMovieShortCommentView extends ICoreLoadingView {
-        void addMovieShortComment(MovieShortCommentBean o);
+   public interface IMovieShortCommentView extends ICoreLoadingView {
+      void addMovieShortComment(MovieShortCommentBean o);
 
-        void addMovieShortCommentTag(List<MovieCommentTagBean.DataBean> data);
+      void addMovieShortCommentTag(List<MovieCommentTagBean.DataBean> data);
 
-        void addMoreShortComment(MovieShortCommentBean.DataBean data);
+      void addMoreShortComment(MovieShortCommentBean.DataBean data);
 
-        void loadMoreShotCommentFail(String s);
-    }
+      void loadMoreShotCommentFail(String s);
+   }
 
-    public interface IMovieShortCommentPresenter {
-        void getCommentShortComment(int movieId, int tag,int limit, int offset);
+   public interface IMovieShortCommentPresenter {
+      void getCommentShortComment(int movieId, int tag, int limit, int offset);
 
-        void getMoreShortComment(int movieId,int tag, int limit, int offset);
-    }
+      void getMoreShortComment(int movieId, int tag, int limit, int offset);
+   }
 }

@@ -10,12 +10,13 @@ import java.util.List;
 
 public class TopHundredMovieContract {
 
-    public interface ITopHundredMovieView extends ICoreLoadingView {
-        void addTopHundredMovie(List<TopHundredMovieBean.DataBean.MoviesBean> movies);
+   public interface ITopHundredMovieView extends ICoreLoadingView {
+      void addTopHundredMovie(List<TopHundredMovieBean.DataBean.MoviesBean> movies);
 
-        void addContent(String created, String content);
-    }
-    public interface ITopHUndredMoviePresenter{
-        void getTopHundredMovie(int offset);
-    }
+      void addContent(String created, String content);
+   }
+
+   public interface ITopHUndredMoviePresenter {
+      void getTopHundredMovie(int offset);
+   }
 }

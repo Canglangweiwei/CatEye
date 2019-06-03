@@ -16,62 +16,63 @@ import com.cicinnus.cateye.view.RatingBar;
  * 短评
  */
 
-public class MovieShortCommentAdapter extends BaseQuickAdapter<MovieShortCommentBean.DataBean.HcmtsBean,BaseViewHolder> {
+public class MovieShortCommentAdapter extends BaseQuickAdapter<MovieShortCommentBean.DataBean.HcmtsBean, BaseViewHolder> {
 
 
-    private OnShortCommentClickListener onShortCommentClickListener;
-    public MovieShortCommentAdapter() {
-        super(R.layout.item_short_comment,null);
-    }
+   private OnShortCommentClickListener onShortCommentClickListener;
 
-    @Override
-    protected void convert(BaseViewHolder helper, final MovieShortCommentBean.DataBean.HcmtsBean item) {
-        helper.setText(R.id.tv_author_name,item.getNickName())
-                .setText(R.id.tv_comment_content,String.format("%s",item.getContent()))
-                .setText(R.id.tv_approve_count,String.format("%s",item.getApprove()))
-                .setText(R.id.tv_reply_count,String.format("%s",item.getReply()))
-                .setText(R.id.tv_pub_time, TimeUtils.dateMD(item.getCreated()));
+   public MovieShortCommentAdapter() {
+      super(R.layout.item_short_comment, null);
+   }
 
-        RatingBar ratingBar = helper.getView(R.id.rb_score);
-        ratingBar.setStar(item.getScore().floatValue());
+   @Override
+   protected void convert(BaseViewHolder helper, final MovieShortCommentBean.DataBean.HcmtsBean item) {
+      helper.setText(R.id.tv_author_name, item.getNickName())
+          .setText(R.id.tv_comment_content, String.format("%s", item.getContent()))
+          .setText(R.id.tv_approve_count, String.format("%s", item.getApprove()))
+          .setText(R.id.tv_reply_count, String.format("%s", item.getReply()))
+          .setText(R.id.tv_pub_time, TimeUtils.dateMD(item.getCreated()));
 
-        Drawable icon = null;
-        switch (item.getUserLevel()){
-            case 1:
-                icon = mContext.getResources().getDrawable(R.drawable.ic_lv1);
-                break;
-            case 2:
-                icon = mContext.getResources().getDrawable(R.drawable.ic_lv2);
-                break;
-            case 3:
-                icon = mContext.getResources().getDrawable(R.drawable.ic_lv3);
-                break;
-            case 4:
-                icon = mContext.getResources().getDrawable(R.drawable.ic_lv4);
-                break;
-            case 5:
-                icon = mContext.getResources().getDrawable(R.drawable.ic_lv5);
-                break;
-        }
-        helper.setImageDrawable(R.id.iv_user_level,icon);
-        GlideManager.loadImage(mContext,item.getAvatarurl(), R.drawable.ic_user_default,(CircleImageView) helper.getView(R.id.civ_author));
+      RatingBar ratingBar = helper.getView(R.id.rb_score);
+      ratingBar.setStar(item.getScore().floatValue());
 
-        helper.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (onShortCommentClickListener != null) {
-                    onShortCommentClickListener.onClick(item.getId());
-                }
+      Drawable icon = null;
+      switch (item.getUserLevel()) {
+         case 1:
+            icon = mContext.getResources().getDrawable(R.drawable.ic_lv1);
+            break;
+         case 2:
+            icon = mContext.getResources().getDrawable(R.drawable.ic_lv2);
+            break;
+         case 3:
+            icon = mContext.getResources().getDrawable(R.drawable.ic_lv3);
+            break;
+         case 4:
+            icon = mContext.getResources().getDrawable(R.drawable.ic_lv4);
+            break;
+         case 5:
+            icon = mContext.getResources().getDrawable(R.drawable.ic_lv5);
+            break;
+      }
+      helper.setImageDrawable(R.id.iv_user_level, icon);
+      GlideManager.loadImage(mContext, item.getAvatarurl(), R.drawable.ic_user_default, (CircleImageView) helper.getView(R.id.civ_author));
+
+      helper.itemView.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+            if (onShortCommentClickListener != null) {
+               onShortCommentClickListener.onClick(item.getId());
             }
-        });
+         }
+      });
 
-    }
+   }
 
-    public void setOnShortCommentClickListener(OnShortCommentClickListener onShortCommentClickListener) {
-        this.onShortCommentClickListener = onShortCommentClickListener;
-    }
+   public void setOnShortCommentClickListener(OnShortCommentClickListener onShortCommentClickListener) {
+      this.onShortCommentClickListener = onShortCommentClickListener;
+   }
 
-    public interface OnShortCommentClickListener{
-        void onClick(int id);
-    }
+   public interface OnShortCommentClickListener {
+      void onClick(int id);
+   }
 }

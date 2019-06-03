@@ -9,17 +9,18 @@ import java.util.List;
  */
 
 public class MovieTopicContract {
-    public interface IMovieTopicView extends ICoreLoadingView  {
+   public interface IMovieTopicView extends ICoreLoadingView {
 
-        void addMovieTopic(List<MovieTopicListBean.DataBean> data);
+      void addMovieTopic(List<MovieTopicListBean.DataBean> data);
 
-        void loadMoreTopicError(String message);
+      void loadMoreTopicError(String message);
 
-        void addMoreMovieTopic(List<MovieTopicListBean.DataBean> data);
-    }
-    public interface IMovieTopicPresenter{
-        void getMovieTopic(int movieId,int offset);
+      void addMoreMovieTopic(List<MovieTopicListBean.DataBean> data);
+   }
 
-        void getMoreTopic(int movieId, int offset);
-    }
+   public interface IMovieTopicPresenter {
+      void getMovieTopic(int movieId, int offset);
+
+      void getMoreTopic(int movieId, int offset);
+   }
 }

@@ -12,14 +12,14 @@ import com.cicinnus.cateye.tools.ImgSizeUtil;
  * Created by Cicinnus on 2017/2/19.
  */
 
-public class StarPhotosAdapter extends BaseQuickAdapter<String,BaseViewHolder> {
-    public StarPhotosAdapter() {
-        super(R.layout.item_star_photos, null);
-    }
+public class StarPhotosAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
+   public StarPhotosAdapter() {
+      super(R.layout.item_star_photos, null);
+   }
 
-    @Override
-    protected void convert(BaseViewHolder helper, String item) {
-        String imgUrl = ImgSizeUtil.resetPicUrl(item,"");
-        GlideManager.loadImage(mContext,imgUrl, (ImageView) helper.getView(R.id.iv_star_photo));
-    }
+   @Override
+   protected void convert(BaseViewHolder helper, String item) {
+      String imgUrl = ImgSizeUtil.resetPicUrl(item, "");
+      GlideManager.loadImage(mContext, imgUrl, (ImageView) helper.getView(R.id.iv_star_photo));
+   }
 }

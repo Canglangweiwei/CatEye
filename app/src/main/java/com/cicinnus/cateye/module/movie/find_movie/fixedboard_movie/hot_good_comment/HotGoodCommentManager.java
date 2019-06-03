@@ -11,12 +11,12 @@ import io.reactivex.Observable;
 
 public class HotGoodCommentManager {
 
-    //获取热门口碑电影
-    public Observable<HotGoodCommentBean> getHotGoodCommentList(int offset){
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getHotGoodCommentMovie(10,offset)
-                .compose(SchedulersCompat.<HotGoodCommentBean>applyIoSchedulers());
-    }
+   //获取热门口碑电影
+   public Observable<HotGoodCommentBean> getHotGoodCommentList(int offset) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getHotGoodCommentMovie(10, offset)
+          .compose(SchedulersCompat.<HotGoodCommentBean>applyIoSchedulers());
+   }
 }

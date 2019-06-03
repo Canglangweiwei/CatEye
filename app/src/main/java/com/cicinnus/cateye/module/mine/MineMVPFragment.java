@@ -9,18 +9,18 @@ import com.cicinnus.retrofitlib.base.BaseMVPFragment;
 
 public class MineMVPFragment extends BaseMVPFragment {
 
-    public static MineMVPFragment newInstance() {
+   public static MineMVPFragment newInstance() {
 
-        return new MineMVPFragment();
-    }
+      return new MineMVPFragment();
+   }
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_mine;
-    }
+   @Override
+   protected int getLayoutId() {
+      return R.layout.fragment_mine;
+   }
 
-    @Override
-    protected void initEventAndData() {
+   @Override
+   protected void initEventAndData() {
 
-    }
+   }
 }

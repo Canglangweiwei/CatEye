@@ -9,11 +9,11 @@ import com.cicinnus.cateye.module.movie.find_movie.bean.AwardsMovieBean;
 
 public class AwardsSection extends SectionEntity<AwardsMovieBean.DataBean> {
 
-    public AwardsSection(AwardsMovieBean.DataBean dataBean) {
-        super(dataBean);
-    }
+   public AwardsSection(AwardsMovieBean.DataBean dataBean) {
+      super(dataBean);
+   }
 
-    public AwardsSection(boolean isHeader, String header) {
-        super(isHeader, header);
-    }
+   public AwardsSection(boolean isHeader, String header) {
+      super(isHeader, header);
+   }
 }

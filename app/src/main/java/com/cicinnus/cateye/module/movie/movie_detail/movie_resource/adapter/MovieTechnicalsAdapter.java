@@ -9,14 +9,14 @@ import com.cicinnus.cateye.module.movie.movie_detail.movie_resource.bean.MovieTe
  * Created by Administrator on 2017/2/20.
  */
 
-public class MovieTechnicalsAdapter extends BaseQuickAdapter<MovieTechnicalsBean.DataBean.ItemsBean,BaseViewHolder> {
-    public MovieTechnicalsAdapter() {
-        super(R.layout.item_movie_technicals, null);
-    }
+public class MovieTechnicalsAdapter extends BaseQuickAdapter<MovieTechnicalsBean.DataBean.ItemsBean, BaseViewHolder> {
+   public MovieTechnicalsAdapter() {
+      super(R.layout.item_movie_technicals, null);
+   }
 
-    @Override
-    protected void convert(BaseViewHolder helper, MovieTechnicalsBean.DataBean.ItemsBean item) {
-        helper.setText(R.id.tv_technicals_title,item.getTitle())
-                .setText(R.id.tv_technicals_content,item.getDesc());
-    }
+   @Override
+   protected void convert(BaseViewHolder helper, MovieTechnicalsBean.DataBean.ItemsBean item) {
+      helper.setText(R.id.tv_technicals_title, item.getTitle())
+          .setText(R.id.tv_technicals_content, item.getDesc());
+   }
 }

@@ -14,48 +14,48 @@ import com.cicinnus.cateye.module.cinema.bean.FilterBean;
 public class AreaAdapter extends BaseQuickAdapter<FilterBean.DataBean.DistrictBean.SubItemsBeanXX, BaseViewHolder> {
 
 
-    private OnDistrictClickListener onDistrictClickListener;
-    private int selectedPos = 0;
+   private OnDistrictClickListener onDistrictClickListener;
+   private int selectedPos = 0;
 
-    public AreaAdapter() {
-        super(R.layout.item_district);
-    }
+   public AreaAdapter() {
+      super(R.layout.item_district);
+   }
 
-    @Override
-    protected void convert(final BaseViewHolder helper, final FilterBean.DataBean.DistrictBean.SubItemsBeanXX item) {
-        helper.setText(R.id.tv_district_name, item.getName())
-                .setText(R.id.tv_count, String.format("%s", item.getId() == -1 ? "" : item.getCount()));
+   @Override
+   protected void convert(final BaseViewHolder helper, final FilterBean.DataBean.DistrictBean.SubItemsBeanXX item) {
+      helper.setText(R.id.tv_district_name, item.getName())
+          .setText(R.id.tv_count, String.format("%s", item.getId() == -1 ? "" : item.getCount()));
 
-        if (item.isSelect) {
-            helper.setBackgroundColor(R.id.ll_district, mContext.getResources().getColor(R.color.white));
-        } else {
-            helper.setBackgroundColor(R.id.ll_district, mContext.getResources().getColor(R.color.divider_normal));
+      if (item.isSelect) {
+         helper.setBackgroundColor(R.id.ll_district, mContext.getResources().getColor(R.color.white));
+      } else {
+         helper.setBackgroundColor(R.id.ll_district, mContext.getResources().getColor(R.color.divider_normal));
 
-        }
+      }
 
-        helper.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+      helper.itemView.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
 
-                if (selectedPos != helper.getAdapterPosition()) {
-                    mData.get(selectedPos).isSelect = false;
-                    notifyItemChanged(selectedPos);
-                    selectedPos = helper.getAdapterPosition();
-                    mData.get(selectedPos).isSelect = true;
-                    notifyItemChanged(selectedPos);
-                    if (onDistrictClickListener != null) {
-                        onDistrictClickListener.onClick(item);
-                    }
-                }
+            if (selectedPos != helper.getAdapterPosition()) {
+               mData.get(selectedPos).isSelect = false;
+               notifyItemChanged(selectedPos);
+               selectedPos = helper.getAdapterPosition();
+               mData.get(selectedPos).isSelect = true;
+               notifyItemChanged(selectedPos);
+               if (onDistrictClickListener != null) {
+                  onDistrictClickListener.onClick(item);
+               }
             }
-        });
-    }
+         }
+      });
+   }
 
-    public void setOnDistrictClickListener(OnDistrictClickListener onDistrictClickListener) {
-        this.onDistrictClickListener = onDistrictClickListener;
-    }
+   public void setOnDistrictClickListener(OnDistrictClickListener onDistrictClickListener) {
+      this.onDistrictClickListener = onDistrictClickListener;
+   }
 
-    public interface OnDistrictClickListener {
-        void onClick(FilterBean.DataBean.DistrictBean.SubItemsBeanXX item);
-    }
+   public interface OnDistrictClickListener {
+      void onClick(FilterBean.DataBean.DistrictBean.SubItemsBeanXX item);
+   }
 }

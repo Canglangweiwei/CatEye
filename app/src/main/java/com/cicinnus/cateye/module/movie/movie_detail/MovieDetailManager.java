@@ -23,152 +23,163 @@ import io.reactivex.ObservableSource;
 
 public class MovieDetailManager {
 
-    /**
-     * 获取电影资料
-     * @param movieId
-     * @return
-     */
-    public ObservableSource<MovieBasicDataBean> getMovieBasicData(int movieId){
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getMovieBasicData(movieId);
-    }
+   /**
+    * 获取电影资料
+    *
+    * @param movieId
+    * @return
+    */
+   public ObservableSource<MovieBasicDataBean> getMovieBasicData(int movieId) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getMovieBasicData(movieId);
+   }
 
-    public ObservableSource<MovieTipsBean> getMovieTips(int movieId){
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getMovieTipsBean(movieId);
-    }
+   public ObservableSource<MovieTipsBean> getMovieTips(int movieId) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getMovieTipsBean(movieId);
+   }
 
-    /**
-     * 影星列表
-     * @param movieId
-     * @return
-     */
-    public ObservableSource<MovieStarBean> getMovieStarList(int movieId){
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getMovieStarList(movieId);
-    }
+   /**
+    * 影星列表
+    *
+    * @param movieId
+    * @return
+    */
+   public ObservableSource<MovieStarBean> getMovieStarList(int movieId) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getMovieStarList(movieId);
+   }
 
-    /**
-     * 获取票房
-     * @param movieId
-     * @return
-     */
-    public ObservableSource<MovieMoneyBoxBean> getMovieBox(int movieId){
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getMovieBox(movieId);
-    }
+   /**
+    * 获取票房
+    *
+    * @param movieId
+    * @return
+    */
+   public ObservableSource<MovieMoneyBoxBean> getMovieBox(int movieId) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getMovieBox(movieId);
+   }
 
-    /**
-     * 获取获奖情况
-     * @param movieId
-     * @return
-     */
-    public ObservableSource<MovieAwardsBean> getMovieAwards(int movieId){
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getMovieAwards(movieId);
-    }
+   /**
+    * 获取获奖情况
+    *
+    * @param movieId
+    * @return
+    */
+   public ObservableSource<MovieAwardsBean> getMovieAwards(int movieId) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getMovieAwards(movieId);
+   }
 
-    /**
-     * 获取电影资料
-     * @param movieId
-     * @return
-     */
-    public ObservableSource<MovieResourceBean> getMovieResource(int movieId){
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getMovieResource(movieId);
-    }
+   /**
+    * 获取电影资料
+    *
+    * @param movieId
+    * @return
+    */
+   public ObservableSource<MovieResourceBean> getMovieResource(int movieId) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getMovieResource(movieId);
+   }
 
-    /**
-     * 评论标签
-     * @param movieId
-     * @return
-     */
-    public ObservableSource<MovieCommentTagBean> getMovieCommentTag(int movieId){
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getMovieCommentTag(movieId);
-    }
+   /**
+    * 评论标签
+    *
+    * @param movieId
+    * @return
+    */
+   public ObservableSource<MovieCommentTagBean> getMovieCommentTag(int movieId) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getMovieCommentTag(movieId);
+   }
 
-    public ObservableSource<MovieShortCommentBean> getMovieShortCommentBean(int movieId){
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getMovieShortComment(movieId,0,3,0);
-    }
-
-
-    /**
-     * 热门长评
-     * @param movieId
-     * @return
-     */
-    public ObservableSource<MovieLongCommentBean> getMovieLongComment(int movieId){
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getMovieLongComment(movieId);
-    }
-
-    /**
-     * 获取专业影评
-     * @param movieId
-     * @return
-     */
-    public ObservableSource<MovieProCommentBean> getMovieProComment(int movieId){
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getMovieProComment(movieId,0,3);
-    }
-
-    /**
-     * 相关资讯
-     * @param movieId
-     * @return
-     */
-   public ObservableSource<MovieRelatedInformationBean> getMovieRelatedInformation(int movieId){
-       return RetrofitClient
-               .getInstance()
-               .api()
-               .getMovieRelatedInformation(movieId);
+   public ObservableSource<MovieShortCommentBean> getMovieShortCommentBean(int movieId) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getMovieShortComment(movieId, 0, 3, 0);
    }
 
 
-    /**
-     * 相关电影
-     * @param movieId
-     * @return
-     */
-    public ObservableSource<RelatedMovieBean> getRelatedMovie(int movieId){
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getRelatedMovie(movieId);
-    }
+   /**
+    * 热门长评
+    *
+    * @param movieId
+    * @return
+    */
+   public ObservableSource<MovieLongCommentBean> getMovieLongComment(int movieId) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getMovieLongComment(movieId);
+   }
 
-    /**
-     * 相关话题
-     * @param movieId
-     * @return
-     */
-    public ObservableSource<MovieTopicBean> getMovieTopic(int movieId){
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getMovieTopic(movieId);
-    }
+   /**
+    * 获取专业影评
+    *
+    * @param movieId
+    * @return
+    */
+   public ObservableSource<MovieProCommentBean> getMovieProComment(int movieId) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getMovieProComment(movieId, 0, 3);
+   }
+
+   /**
+    * 相关资讯
+    *
+    * @param movieId
+    * @return
+    */
+   public ObservableSource<MovieRelatedInformationBean> getMovieRelatedInformation(int movieId) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getMovieRelatedInformation(movieId);
+   }
+
+
+   /**
+    * 相关电影
+    *
+    * @param movieId
+    * @return
+    */
+   public ObservableSource<RelatedMovieBean> getRelatedMovie(int movieId) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getRelatedMovie(movieId);
+   }
+
+   /**
+    * 相关话题
+    *
+    * @param movieId
+    * @return
+    */
+   public ObservableSource<MovieTopicBean> getMovieTopic(int movieId) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getMovieTopic(movieId);
+   }
 
 }

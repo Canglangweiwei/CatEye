@@ -15,58 +15,58 @@ import io.reactivex.functions.Consumer;
 
 public class MovieProCommentPresenter extends com.cicinnus.retrofitlib.base.BaseMVPPresenter<MovieProCommentContract.IMovieProCommentView> implements MovieProCommentContract.IMovieProCommentPresenter {
 
-    private final MovieProCommentManager movieProCommentManager;
+   private final MovieProCommentManager movieProCommentManager;
 
-    public MovieProCommentPresenter(Activity activity, MovieProCommentContract.IMovieProCommentView view) {
-        super(activity, view);
-        movieProCommentManager = new MovieProCommentManager();
-    }
+   public MovieProCommentPresenter(Activity activity, MovieProCommentContract.IMovieProCommentView view) {
+      super(activity, view);
+      movieProCommentManager = new MovieProCommentManager();
+   }
 
-    @Override
-    public void getMovieProComment(final int movieId, int offset) {
-        mView.showLoading();
-        addSubscribeUntilDestroy(movieProCommentManager.getMovieProComment(movieId, offset)
-                .subscribe(new Consumer<MovieProCommentBean>() {
-                    @Override
-                    public void accept(@NonNull MovieProCommentBean movieProCommentBean) throws Exception {
-                        mView.addMovieProComment(movieProCommentBean.getData());
-                        mView.addMovieData(movieProCommentBean.getPaging());
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(@NonNull Throwable throwable) throws Exception {
-                        mView.showError(throwable.getMessage());
+   @Override
+   public void getMovieProComment(final int movieId, int offset) {
+      mView.showLoading();
+      addSubscribeUntilDestroy(movieProCommentManager.getMovieProComment(movieId, offset)
+          .subscribe(new Consumer<MovieProCommentBean>() {
+             @Override
+             public void accept(@NonNull MovieProCommentBean movieProCommentBean) throws Exception {
+                mView.addMovieProComment(movieProCommentBean.getData());
+                mView.addMovieData(movieProCommentBean.getPaging());
+             }
+          }, new Consumer<Throwable>() {
+             @Override
+             public void accept(@NonNull Throwable throwable) throws Exception {
+                mView.showError(throwable.getMessage());
 
-                    }
-                }, new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        mView.showContent();
-                    }
-                }));
-    }
+             }
+          }, new Action() {
+             @Override
+             public void run() throws Exception {
+                mView.showContent();
+             }
+          }));
+   }
 
-    @Override
-    public void getMoreMovieProComment(int movieId, int offset) {
-        addSubscribeUntilDestroy(movieProCommentManager.getMovieProComment(movieId, offset)
-                .subscribe(new Consumer<MovieProCommentBean>() {
-                    @Override
-                    public void accept(@NonNull MovieProCommentBean movieProCommentBean) throws Exception {
-                        mView.addMovieProComment(movieProCommentBean.getData());
+   @Override
+   public void getMoreMovieProComment(int movieId, int offset) {
+      addSubscribeUntilDestroy(movieProCommentManager.getMovieProComment(movieId, offset)
+          .subscribe(new Consumer<MovieProCommentBean>() {
+             @Override
+             public void accept(@NonNull MovieProCommentBean movieProCommentBean) throws Exception {
+                mView.addMovieProComment(movieProCommentBean.getData());
 
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(@NonNull Throwable throwable) throws Exception {
-                        mView.loadMoreFail(throwable.getMessage());
+             }
+          }, new Consumer<Throwable>() {
+             @Override
+             public void accept(@NonNull Throwable throwable) throws Exception {
+                mView.loadMoreFail(throwable.getMessage());
 
-                    }
-                }, new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        mView.showContent();
+             }
+          }, new Action() {
+             @Override
+             public void run() throws Exception {
+                mView.showContent();
 
-                    }
-                }));
-    }
+             }
+          }));
+   }
 }

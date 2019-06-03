@@ -13,17 +13,17 @@ import io.reactivex.Observable;
 public class MovieShortCommentManager {
 
 
-    public Observable<MovieCommentTagBean> getMovieCommentTag(int movieId){
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getMovieCommentTag(movieId);
-    }
+   public Observable<MovieCommentTagBean> getMovieCommentTag(int movieId) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getMovieCommentTag(movieId);
+   }
 
-    public Observable<MovieShortCommentBean> getMovieShortCommentBean(int movieId, int tag,int limit, int offset){
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getMovieShortComment(movieId,tag ,limit,offset);
-    }
+   public Observable<MovieShortCommentBean> getMovieShortCommentBean(int movieId, int tag, int limit, int offset) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getMovieShortComment(movieId, tag, limit, offset);
+   }
 }

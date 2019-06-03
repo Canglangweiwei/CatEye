@@ -9,13 +9,13 @@ import com.cicinnus.cateye.module.movie.movie_detail.movie_resource.bean.MoviePa
  * Created by Cicinnus on 2017/2/22.
  */
 
-public class MovieParentGuidancesAdapter extends BaseQuickAdapter<MovieParentGuidancesBean.DataBean.GovBean,BaseViewHolder> {
-    public MovieParentGuidancesAdapter() {
-        super(R.layout.item_movie_parent_guidances, null);
-    }
+public class MovieParentGuidancesAdapter extends BaseQuickAdapter<MovieParentGuidancesBean.DataBean.GovBean, BaseViewHolder> {
+   public MovieParentGuidancesAdapter() {
+      super(R.layout.item_movie_parent_guidances, null);
+   }
 
-    @Override
-    protected void convert(BaseViewHolder helper, MovieParentGuidancesBean.DataBean.GovBean item) {
-        helper.setText(R.id.tv_movie_parent_guidances,item.getDesc());
-    }
+   @Override
+   protected void convert(BaseViewHolder helper, MovieParentGuidancesBean.DataBean.GovBean item) {
+      helper.setText(R.id.tv_movie_parent_guidances, item.getDesc());
+   }
 }

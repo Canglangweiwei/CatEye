@@ -11,11 +11,11 @@ import io.reactivex.Observable;
 
 public class MostExpectMovieManager {
 
-    public Observable<MostExpectMovieBean> getRecentExpectMovieList(int offset){
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getMostExpectMovie(10,offset)
-                .compose(SchedulersCompat.<MostExpectMovieBean>applyIoSchedulers());
-    }
+   public Observable<MostExpectMovieBean> getRecentExpectMovieList(int offset) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getMostExpectMovie(10, offset)
+          .compose(SchedulersCompat.<MostExpectMovieBean>applyIoSchedulers());
+   }
 }

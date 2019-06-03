@@ -13,17 +13,17 @@ import java.util.List;
 
 public class CinemaDetailContract {
 
-    public interface ICinemaDetailView extends ICoreLoadingView{
-        void addCinemaMovies(List<CinemaMovieBean.DataBean.MoviesBean> movies);
+   public interface ICinemaDetailView extends ICoreLoadingView {
+      void addCinemaMovies(List<CinemaMovieBean.DataBean.MoviesBean> movies);
 
-        void addCinemaData(CinemaBean.DataBean data);
+      void addCinemaData(CinemaBean.DataBean data);
 
-        void addFoods(List<FoodsBean.DataBean.DealListBean> dealList);
-    }
+      void addFoods(List<FoodsBean.DataBean.DealListBean> dealList);
+   }
 
-    public interface ICinemaDetailPresenter{
+   public interface ICinemaDetailPresenter {
 
-        void getCinema(int cinemaId);
+      void getCinema(int cinemaId);
 
-    }
+   }
 }

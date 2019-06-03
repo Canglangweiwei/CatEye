@@ -18,52 +18,52 @@ import com.cicinnus.retrofitlib.base.ICorePresenter;
 public abstract class BaseActivity<T extends ICorePresenter> extends BaseMVPActivity<T> {
 
 
-    @Override
-    protected void initEventAndData(Bundle savedInstanceState) {
+   @Override
+   protected void initEventAndData(Bundle savedInstanceState) {
 //        this.initEventAndData();
 
-    }
+   }
 
-    @Override
-    public int getLayoutId() {
-        return getLayout();
-    }
+   @Override
+   public int getLayoutId() {
+      return getLayout();
+   }
 
-    protected abstract int getLayout();
+   protected abstract int getLayout();
 
-    @Override
-    protected void initEventAndData() {
-        initToolbar();
-    }
+   @Override
+   protected void initEventAndData() {
+      initToolbar();
+   }
 
-    private void initToolbar() {
+   private void initToolbar() {
 
-    }
+   }
 
-    protected void setUpToolbar(Toolbar toolbar, String title) {
-        toolbar.setTitle(title);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-    }
+   protected void setUpToolbar(Toolbar toolbar, String title) {
+      toolbar.setTitle(title);
+      setSupportActionBar(toolbar);
+      getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+      toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+            finish();
+         }
+      });
+   }
 
-    protected void setupSwipe(SwipeRefreshLayout swipe, SwipeRefreshLayout.OnRefreshListener listener) {
-        swipe.setColorSchemeResources(R.color.colorPrimary);
-        swipe.setOnRefreshListener(listener);
-    }
+   protected void setupSwipe(SwipeRefreshLayout swipe, SwipeRefreshLayout.OnRefreshListener listener) {
+      swipe.setColorSchemeResources(R.color.colorPrimary);
+      swipe.setOnRefreshListener(listener);
+   }
 
-    @Override
-    public Resources getResources() {
-        Resources res = super.getResources();
-        Configuration config = new Configuration();
-        config.setToDefaults();
-        res.updateConfiguration(config, res.getDisplayMetrics());
-        return res;
-    }
+   @Override
+   public Resources getResources() {
+      Resources res = super.getResources();
+      Configuration config = new Configuration();
+      config.setToDefaults();
+      res.updateConfiguration(config, res.getDisplayMetrics());
+      return res;
+   }
 
 }

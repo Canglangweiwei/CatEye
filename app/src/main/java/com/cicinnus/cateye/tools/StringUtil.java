@@ -10,60 +10,61 @@ import java.text.DecimalFormat;
 
 public class StringUtil {
 
-    /**
-     * 将数字转为带单位(万)
-     *
-     * @param num
-     * @return
-     */
-    public static String changeNumToCN(int num) {
-        DecimalFormat format = new DecimalFormat("0.0");
-        int u = (int) Math.floor(Math.log10(num));
-        if (u >= 5) {
-            return String.format("%s万", format.format(num / 10000.0));
-        } else return String.format("%s", num);
-    }
+   /**
+    * 将数字转为带单位(万)
+    *
+    * @param num
+    * @return
+    */
+   public static String changeNumToCN(int num) {
+      DecimalFormat format = new DecimalFormat("0.0");
+      int u = (int) Math.floor(Math.log10(num));
+      if (u >= 5) {
+         return String.format("%s万", format.format(num / 10000.0));
+      } else return String.format("%s", num);
+   }
 
 
-    /**
-     * 讲数字转为带单位(亿)
-     *
-     * @param count
-     * @return
-     */
-    public static String changeMillionIntoBillion(int count) {
-        DecimalFormat format = new DecimalFormat("0.0");
-        int u = (int) Math.floor(Math.log10(count));
-        if (u >= 4) {
-            return String.format("%s亿", format.format(count / 10000.0));
-        } else return String.format("%s万", count);
-    }
+   /**
+    * 讲数字转为带单位(亿)
+    *
+    * @param count
+    * @return
+    */
+   public static String changeMillionIntoBillion(int count) {
+      DecimalFormat format = new DecimalFormat("0.0");
+      int u = (int) Math.floor(Math.log10(count));
+      if (u >= 4) {
+         return String.format("%s亿", format.format(count / 10000.0));
+      } else return String.format("%s万", count);
+   }
 
-    /**
-     * 获取正确的url
-     * @param url
-     * @return
-     */
-    public static String getRealUrl(String url) {
-        Logger.d(url);
-        if (url.contains("id=")) {
-            if (url.contains("&")) {
-                String id = url.substring(url.indexOf("id=") + 3, url.indexOf("&"));
-                return "http://m.maoyan.com/information/" + id + "?_v_=yes";
-            } else {
-                String id = url.substring(url.indexOf("id=") + 3);
-                return "http://m.maoyan.com/information/" + id + "?_v_=yes";
-            }
-        } else if (url.contains("ID=")) {
-            if (url.contains("&")) {
-                String id = url.substring(url.indexOf("ID=") + 3, url.indexOf("&"));
-                return "http://m.maoyan.com/topic/" + id + "?_v_=yes";
-            } else {
-                String id = url.substring(url.indexOf("ID=") + 3);
-                return "http://m.maoyan.com/topic/" + id + "?_v_=yes";
-            }
-        }
-        return new Exception("Error Url").toString();
+   /**
+    * 获取正确的url
+    *
+    * @param url
+    * @return
+    */
+   public static String getRealUrl(String url) {
+      Logger.d(url);
+      if (url.contains("id=")) {
+         if (url.contains("&")) {
+            String id = url.substring(url.indexOf("id=") + 3, url.indexOf("&"));
+            return "http://m.maoyan.com/information/" + id + "?_v_=yes";
+         } else {
+            String id = url.substring(url.indexOf("id=") + 3);
+            return "http://m.maoyan.com/information/" + id + "?_v_=yes";
+         }
+      } else if (url.contains("ID=")) {
+         if (url.contains("&")) {
+            String id = url.substring(url.indexOf("ID=") + 3, url.indexOf("&"));
+            return "http://m.maoyan.com/topic/" + id + "?_v_=yes";
+         } else {
+            String id = url.substring(url.indexOf("ID=") + 3);
+            return "http://m.maoyan.com/topic/" + id + "?_v_=yes";
+         }
+      }
+      return new Exception("Error Url").toString();
 
-    }
+   }
 }

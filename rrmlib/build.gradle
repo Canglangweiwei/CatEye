@@ -2,7 +2,6 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
-    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
 
     defaultConfig {
         minSdkVersion rootProject.ext.android["minSdkVersion"]
@@ -23,26 +22,26 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    api fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile rootProject.ext.dependencies["appcompat-v7"]
+    api rootProject.ext.dependencies["appcompat-v7"]
     //RxAndroid
-    compile rootProject.ext.dependencies["rxandroid2"]
+    api rootProject.ext.dependencies["rxandroid2"]
     //RxJava2
-    compile rootProject.ext.dependencies["rxjava2"]
+    api rootProject.ext.dependencies["rxjava2"]
     //RxPermission
-    compile rootProject.ext.dependencies["RxPermissions"]
+    api rootProject.ext.dependencies["RxPermissions"]
     //Retrofit2的RxJava适配
-    compile rootProject.ext.dependencies["retrofit2-adapter-rxjava"]
+    api rootProject.ext.dependencies["retrofit2-adapter-rxjava"]
     //Retrofit2
-    compile rootProject.ext.dependencies["retrofit2"]
+    api rootProject.ext.dependencies["retrofit2"]
     //RxJava2Gson适配
-    compile rootProject.ext.dependencies["retrofit2-converter-gson"]
+    api rootProject.ext.dependencies["retrofit2-converter-gson"]
     //网络日志拦截
-    compile rootProject.ext.dependencies["okhttp3-intercepter"]
+    api rootProject.ext.dependencies["okhttp3-intercepter"]
     //X5浏览器内核
-    compile files('libs/tbs_sdk_thirdapp_v3.1.0.1034_43100_sharewithdownload_obfs_20170301_182143.jar')
+    api files('libs/tbs_sdk_thirdapp_v3.1.0.1034_43100_sharewithdownload_obfs_20170301_182143.jar')
     //ButterKnife
-    compile rootProject.ext.dependencies["butterknife"]
+    api rootProject.ext.dependencies["butterknife"]
 }
 

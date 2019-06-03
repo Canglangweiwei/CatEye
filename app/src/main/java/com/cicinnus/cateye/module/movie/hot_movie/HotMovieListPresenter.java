@@ -17,59 +17,59 @@ import io.reactivex.functions.Consumer;
  */
 
 public class HotMovieListPresenter extends BaseMVPPresenter<HotMovieListContract.IHotMovieListView>
-        implements HotMovieListContract.IHotMoviePresenter {
+    implements HotMovieListContract.IHotMoviePresenter {
 
-    private final HotMovieListManager hotMovieListManager;
+   private final HotMovieListManager hotMovieListManager;
 
-    public HotMovieListPresenter(Activity activity, HotMovieListContract.IHotMovieListView view) {
-        super(activity, view);
-        hotMovieListManager = new HotMovieListManager();
-    }
+   public HotMovieListPresenter(Activity activity, HotMovieListContract.IHotMovieListView view) {
+      super(activity, view);
+      hotMovieListManager = new HotMovieListManager();
+   }
 
-    @Override
-    public void getHotMovieList(int limit) {
-        mView.showLoading();
-        addSubscribeUntilDestroy(hotMovieListManager.getHotMovieList(limit)
-                .compose(SchedulersCompat.<HotMovieListBean>applyIoSchedulers())
-                .subscribe(new Consumer<HotMovieListBean>() {
-                    @Override
-                    public void accept(@NonNull HotMovieListBean hotMovieListBean) {
-                        mView.addMovieIds(hotMovieListBean.getData().getMovieIds());
-                        mView.addHotMovieList(hotMovieListBean.getData().getHot());
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(@NonNull Throwable throwable) {
-                        mView.showError(ErrorHanding.handleError(throwable));
+   @Override
+   public void getHotMovieList(int limit) {
+      mView.showLoading();
+      addSubscribeUntilDestroy(hotMovieListManager.getHotMovieList(limit)
+          .compose(SchedulersCompat.<HotMovieListBean>applyIoSchedulers())
+          .subscribe(new Consumer<HotMovieListBean>() {
+             @Override
+             public void accept(@NonNull HotMovieListBean hotMovieListBean) {
+                mView.addMovieIds(hotMovieListBean.getData().getMovieIds());
+                mView.addHotMovieList(hotMovieListBean.getData().getHot());
+             }
+          }, new Consumer<Throwable>() {
+             @Override
+             public void accept(@NonNull Throwable throwable) {
+                mView.showError(ErrorHanding.handleError(throwable));
 
-                    }
-                }, new Action() {
-                    @Override
-                    public void run() {
-                        mView.showContent();
-                    }
-                }));
-    }
+             }
+          }, new Action() {
+             @Override
+             public void run() {
+                mView.showContent();
+             }
+          }));
+   }
 
-    @Override
-    public void getMoreHotMovieList(int headline, final String movieIds) {
-        addSubscribeUntilDestroy(hotMovieListManager.getMoreMovieList(headline, movieIds)
-                .compose(SchedulersCompat.<List<HotMovieListBean.DataBean.HotBean>>applyIoSchedulers())
-                .subscribe(new Consumer<List<HotMovieListBean.DataBean.HotBean>>() {
-                    @Override
-                    public void accept(@NonNull List<HotMovieListBean.DataBean.HotBean> hotBeen) {
-                        mView.addMoreMovies(hotBeen);
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(@NonNull Throwable throwable) {
-                        mView.loadMoreError();
-                    }
-                }, new Action() {
-                    @Override
-                    public void run() {
-                        mView.loadMoreCompleted();
-                    }
-                }));
-    }
+   @Override
+   public void getMoreHotMovieList(int headline, final String movieIds) {
+      addSubscribeUntilDestroy(hotMovieListManager.getMoreMovieList(headline, movieIds)
+          .compose(SchedulersCompat.<List<HotMovieListBean.DataBean.HotBean>>applyIoSchedulers())
+          .subscribe(new Consumer<List<HotMovieListBean.DataBean.HotBean>>() {
+             @Override
+             public void accept(@NonNull List<HotMovieListBean.DataBean.HotBean> hotBeen) {
+                mView.addMoreMovies(hotBeen);
+             }
+          }, new Consumer<Throwable>() {
+             @Override
+             public void accept(@NonNull Throwable throwable) {
+                mView.loadMoreError();
+             }
+          }, new Action() {
+             @Override
+             public void run() {
+                mView.loadMoreCompleted();
+             }
+          }));
+   }
 }

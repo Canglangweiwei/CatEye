@@ -9,20 +9,20 @@ import com.cicinnus.retrofitlib.base.ICoreLoadingView;
  */
 
 public class AwardsMovieContract {
-    public interface IAwardsMovieView extends ICoreLoadingView {
-        void addAwardsMovie(AwardsMovieListBean.DataBean data);
+   public interface IAwardsMovieView extends ICoreLoadingView {
+      void addAwardsMovie(AwardsMovieListBean.DataBean data);
 
-        void addMoreAwardsMovie(AwardsMovieListBean.DataBean data);
+      void addMoreAwardsMovie(AwardsMovieListBean.DataBean data);
 
-        void addAwardTitle(AwardsBean.DataBean data);
-    }
+      void addAwardTitle(AwardsBean.DataBean data);
+   }
 
-    public interface IAwardsMoviePresenter {
+   public interface IAwardsMoviePresenter {
 
-        void getAwards(int festivalId);
+      void getAwards(int festivalId);
 
-        void getAwardsMovie(int festSessionId, int limit, int offset);
+      void getAwardsMovie(int festSessionId, int limit, int offset);
 
-        void getMoreAwardsMovie(int festSessionId, int limit, int offset);
-    }
+      void getMoreAwardsMovie(int festSessionId, int limit, int offset);
+   }
 }

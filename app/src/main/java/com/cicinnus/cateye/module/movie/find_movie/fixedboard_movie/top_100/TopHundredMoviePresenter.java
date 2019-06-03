@@ -15,36 +15,36 @@ import io.reactivex.functions.Consumer;
 
 public class TopHundredMoviePresenter extends com.cicinnus.retrofitlib.base.BaseMVPPresenter<TopHundredMovieContract.ITopHundredMovieView> implements TopHundredMovieContract.ITopHUndredMoviePresenter {
 
-    private final TopHundredMovieManager topHundredMovieManager;
+   private final TopHundredMovieManager topHundredMovieManager;
 
-    public TopHundredMoviePresenter(Activity activity, TopHundredMovieContract.ITopHundredMovieView view) {
-        super(activity, view);
-        topHundredMovieManager = new TopHundredMovieManager();
-    }
+   public TopHundredMoviePresenter(Activity activity, TopHundredMovieContract.ITopHundredMovieView view) {
+      super(activity, view);
+      topHundredMovieManager = new TopHundredMovieManager();
+   }
 
 
-    @Override
-    public void getTopHundredMovie(int offset) {
-        mView.showLoading();
-        addSubscribeUntilDestroy(topHundredMovieManager.getTopHundredMovie(offset)
-                .subscribe(new Consumer<TopHundredMovieBean>() {
-                    @Override
-                    public void accept(@NonNull TopHundredMovieBean topHundredMovieBean) throws Exception {
-                        mView.addContent(topHundredMovieBean.getData().getCreated(),topHundredMovieBean.getData().getContent());
-                        mView.addTopHundredMovie(topHundredMovieBean.getData().getMovies());
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(@NonNull Throwable throwable) throws Exception {
-                        mView.showError(ErrorHanding.handleError(throwable));
+   @Override
+   public void getTopHundredMovie(int offset) {
+      mView.showLoading();
+      addSubscribeUntilDestroy(topHundredMovieManager.getTopHundredMovie(offset)
+          .subscribe(new Consumer<TopHundredMovieBean>() {
+             @Override
+             public void accept(@NonNull TopHundredMovieBean topHundredMovieBean) throws Exception {
+                mView.addContent(topHundredMovieBean.getData().getCreated(), topHundredMovieBean.getData().getContent());
+                mView.addTopHundredMovie(topHundredMovieBean.getData().getMovies());
+             }
+          }, new Consumer<Throwable>() {
+             @Override
+             public void accept(@NonNull Throwable throwable) throws Exception {
+                mView.showError(ErrorHanding.handleError(throwable));
 
-                    }
-                }, new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        mView.showContent();
+             }
+          }, new Action() {
+             @Override
+             public void run() throws Exception {
+                mView.showContent();
 
-                    }
-                }));
-    }
+             }
+          }));
+   }
 }

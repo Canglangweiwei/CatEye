@@ -5,27 +5,27 @@ package com.cicinnus.cateye.module.movie.movie_video.RxBusPostBean;
  */
 
 public class VideoPostBean {
-    private String videoName;
-    private String videoUrl;
+   private String videoName;
+   private String videoUrl;
 
-    public VideoPostBean(String videoName, String videoUrl) {
-        this.videoName = videoName;
-        this.videoUrl = videoUrl;
-    }
+   public VideoPostBean(String videoName, String videoUrl) {
+      this.videoName = videoName;
+      this.videoUrl = videoUrl;
+   }
 
-    public String getVideoName() {
-        return videoName;
-    }
+   public String getVideoName() {
+      return videoName;
+   }
 
-    public void setVideoName(String videoName) {
-        this.videoName = videoName;
-    }
+   public void setVideoName(String videoName) {
+      this.videoName = videoName;
+   }
 
-    public String getVideoUrl() {
-        return videoUrl;
-    }
+   public String getVideoUrl() {
+      return videoUrl;
+   }
 
-    public void setVideoUrl(String videoUrl) {
-        this.videoUrl = videoUrl;
-    }
+   public void setVideoUrl(String videoUrl) {
+      this.videoUrl = videoUrl;
+   }
 }

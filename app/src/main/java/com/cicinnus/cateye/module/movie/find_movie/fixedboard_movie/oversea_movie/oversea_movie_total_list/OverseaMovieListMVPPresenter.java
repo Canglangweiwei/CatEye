@@ -17,59 +17,59 @@ import io.reactivex.functions.Consumer;
 
 public class OverseaMovieListMVPPresenter extends com.cicinnus.retrofitlib.base.BaseMVPPresenter<OverseaMovieListContract.IOverseaMovieListView> implements OverseaMovieListContract.IOverseaMovieListPresenter {
 
-    private final OverseaMovieListManager overseaMovieListManager;
+   private final OverseaMovieListManager overseaMovieListManager;
 
-    public OverseaMovieListMVPPresenter(Activity activity, OverseaMovieListContract.IOverseaMovieListView view) {
-        super(activity, view);
-        overseaMovieListManager = new OverseaMovieListManager();
-    }
+   public OverseaMovieListMVPPresenter(Activity activity, OverseaMovieListContract.IOverseaMovieListView view) {
+      super(activity, view);
+      overseaMovieListManager = new OverseaMovieListManager();
+   }
 
 
-    @Override
-    public void getOverseaHotMovieList(String area, int limit, int offset) {
-        mView.showLoading();
-        addSubscribeUntilDestroy(overseaMovieListManager.getOverseaHotMovie(area, limit, offset)
-        .subscribe(new Consumer<OverseaHotMovieBean>() {
-            @Override
-            public void accept(@NonNull OverseaHotMovieBean overseaHotMovieBean) throws Exception {
+   @Override
+   public void getOverseaHotMovieList(String area, int limit, int offset) {
+      mView.showLoading();
+      addSubscribeUntilDestroy(overseaMovieListManager.getOverseaHotMovie(area, limit, offset)
+          .subscribe(new Consumer<OverseaHotMovieBean>() {
+             @Override
+             public void accept(@NonNull OverseaHotMovieBean overseaHotMovieBean) throws Exception {
                 mView.addOverseaHotMovieList(overseaHotMovieBean.getData().getHot());
 
-            }
-        }, new Consumer<Throwable>() {
-            @Override
-            public void accept(@NonNull Throwable throwable) throws Exception {
+             }
+          }, new Consumer<Throwable>() {
+             @Override
+             public void accept(@NonNull Throwable throwable) throws Exception {
                 Logger.e(throwable.getMessage());
                 mView.showError(throwable.getMessage());
-            }
-        }, new Action() {
-            @Override
-            public void run() throws Exception {
+             }
+          }, new Action() {
+             @Override
+             public void run() throws Exception {
                 mView.showContent();
-            }
-        }));
-    }
+             }
+          }));
+   }
 
-    @Override
-    public void getOverseaComingMovieList(String area, int limit, int offset) {
-        mView.showLoading();
-        addSubscribeUntilDestroy(overseaMovieListManager.getOverseaComingMovie(area, limit, offset)
-        .subscribe(new Consumer<OverseaComingMovieBean>() {
-            @Override
-            public void accept(@NonNull OverseaComingMovieBean overseaComingMovieBean) throws Exception {
+   @Override
+   public void getOverseaComingMovieList(String area, int limit, int offset) {
+      mView.showLoading();
+      addSubscribeUntilDestroy(overseaMovieListManager.getOverseaComingMovie(area, limit, offset)
+          .subscribe(new Consumer<OverseaComingMovieBean>() {
+             @Override
+             public void accept(@NonNull OverseaComingMovieBean overseaComingMovieBean) throws Exception {
                 mView.addOverseaComingMovieList(overseaComingMovieBean.getData().getComing());
 
-            }
-        }, new Consumer<Throwable>() {
-            @Override
-            public void accept(@NonNull Throwable throwable) throws Exception {
+             }
+          }, new Consumer<Throwable>() {
+             @Override
+             public void accept(@NonNull Throwable throwable) throws Exception {
                 Logger.e(throwable.getMessage());
                 mView.showError(throwable.getMessage());
-            }
-        }, new Action() {
-            @Override
-            public void run() throws Exception {
+             }
+          }, new Action() {
+             @Override
+             public void run() throws Exception {
                 mView.showContent();
-            }
-        }));
-    }
+             }
+          }));
+   }
 }

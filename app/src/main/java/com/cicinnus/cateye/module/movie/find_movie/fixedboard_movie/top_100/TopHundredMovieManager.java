@@ -11,11 +11,11 @@ import io.reactivex.Observable;
 
 public class TopHundredMovieManager {
 
-    public Observable<TopHundredMovieBean> getTopHundredMovie(int offset){
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getTopHundredMovie(10,offset)
-                .compose(SchedulersCompat.<TopHundredMovieBean>applyIoSchedulers());
-    }
+   public Observable<TopHundredMovieBean> getTopHundredMovie(int offset) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getTopHundredMovie(10, offset)
+          .compose(SchedulersCompat.<TopHundredMovieBean>applyIoSchedulers());
+   }
 }

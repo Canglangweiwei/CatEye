@@ -13,20 +13,20 @@ import com.cicinnus.retrofitlib.base.ICoreLoadingView;
 
 public class MovieStarContract {
 
-    public interface IMovieStarView extends ICoreLoadingView {
+   public interface IMovieStarView extends ICoreLoadingView {
 
-        void addMovieStarInfo(MovieStarInfoBean.DataBean info);
+      void addMovieStarInfo(MovieStarInfoBean.DataBean info);
 
-        void addMovieStarHonor(MovieStarHonor honors);
+      void addMovieStarHonor(MovieStarHonor honors);
 
-        void addStarMovies(StarMoviesBean.DataBean moviesData);
+      void addStarMovies(StarMoviesBean.DataBean moviesData);
 
-        void addRelatedInformation(RelatedInformationBean relatedInformationBean);
+      void addRelatedInformation(RelatedInformationBean relatedInformationBean);
 
-        void addStarRelatedPeople(StarRelatedPeople relatedPeople);
-    }
+      void addStarRelatedPeople(StarRelatedPeople relatedPeople);
+   }
 
-    public interface IMovieStarPresenter {
-        void getMovieStarInfo(int starId);
-    }
+   public interface IMovieStarPresenter {
+      void getMovieStarInfo(int starId);
+   }
 }

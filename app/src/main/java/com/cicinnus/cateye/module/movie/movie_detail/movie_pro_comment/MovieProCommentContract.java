@@ -10,17 +10,17 @@ import java.util.List;
  */
 
 public class MovieProCommentContract {
-    public interface IMovieProCommentView extends ICoreLoadingView {
-        void addMovieProComment(List<MovieProCommentBean.DataBean> movieProCommentBeanData);
+   public interface IMovieProCommentView extends ICoreLoadingView {
+      void addMovieProComment(List<MovieProCommentBean.DataBean> movieProCommentBeanData);
 
-        void loadMoreFail(String message);
+      void loadMoreFail(String message);
 
-        void addMovieData(MovieProCommentBean.PagingBean paging);
-    }
+      void addMovieData(MovieProCommentBean.PagingBean paging);
+   }
 
-    public interface IMovieProCommentPresenter{
-        void getMovieProComment(int movieId, int offset);
+   public interface IMovieProCommentPresenter {
+      void getMovieProComment(int movieId, int offset);
 
-        void getMoreMovieProComment(int movieId, int offset);
-    }
+      void getMoreMovieProComment(int movieId, int offset);
+   }
 }

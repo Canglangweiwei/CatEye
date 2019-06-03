@@ -11,11 +11,11 @@ import io.reactivex.Observable;
  */
 
 public class AwardsListManager {
-    public Observable<AwardsListBean> getAwardsList(){
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getAwardsList()
-                .compose(SchedulersCompat.<AwardsListBean>applyIoSchedulers());
-    }
+   public Observable<AwardsListBean> getAwardsList() {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getAwardsList()
+          .compose(SchedulersCompat.<AwardsListBean>applyIoSchedulers());
+   }
 }

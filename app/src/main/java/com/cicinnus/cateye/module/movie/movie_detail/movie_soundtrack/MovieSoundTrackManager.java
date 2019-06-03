@@ -13,29 +13,31 @@ import io.reactivex.ObservableSource;
 public class MovieSoundTrackManager {
 
 
-    /**
-     * 影片专辑
-     * @param movieId
-     * @return
-     */
-    public ObservableSource<MovieAlbumBean> getMovieAlbum(int movieId){
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getMovieAlbum(movieId);
-    }
+   /**
+    * 影片专辑
+    *
+    * @param movieId
+    * @return
+    */
+   public ObservableSource<MovieAlbumBean> getMovieAlbum(int movieId) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getMovieAlbum(movieId);
+   }
 
-    /**
-     * 影片原声
-     * @param movieId
-     * @return
-     */
-    public ObservableSource<MovieMusicBean> getMovieMusic(int movieId){
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getMovieMusic(movieId);
-    }
+   /**
+    * 影片原声
+    *
+    * @param movieId
+    * @return
+    */
+   public ObservableSource<MovieMusicBean> getMovieMusic(int movieId) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getMovieMusic(movieId);
+   }
 
 
 }

@@ -11,26 +11,26 @@ import okio.BufferedSink;
  */
 public class JsonRequestBody extends RequestBody {
 
-    private static JsonRequestBody instance;
+   private static JsonRequestBody instance;
 
-    public static JsonRequestBody getInstance() {
-        if (instance == null) {
-            instance = new JsonRequestBody();
-        }
-        return instance;
-    }
+   public static JsonRequestBody getInstance() {
+      if (instance == null) {
+         instance = new JsonRequestBody();
+      }
+      return instance;
+   }
 
-    @Override
-    public MediaType contentType() {
-        return MediaType.parse("Content-Type:application/json");
-    }
+   @Override
+   public MediaType contentType() {
+      return MediaType.parse("Content-Type:application/json");
+   }
 
-    @Override
-    public void writeTo(BufferedSink sink) throws IOException {
+   @Override
+   public void writeTo(BufferedSink sink) throws IOException {
 
-    }
+   }
 
-    public RequestBody convertJsonContent(String content) {
-        return RequestBody.create(this.contentType(), content);
-    }
+   public RequestBody convertJsonContent(String content) {
+      return RequestBody.create(this.contentType(), content);
+   }
 }

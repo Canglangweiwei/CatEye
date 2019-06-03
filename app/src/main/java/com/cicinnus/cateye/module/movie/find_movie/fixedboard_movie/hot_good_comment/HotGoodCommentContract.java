@@ -7,14 +7,15 @@ import com.cicinnus.retrofitlib.base.ICoreLoadingView;
  */
 
 public class HotGoodCommentContract {
-    public interface IHotGoodCommentView extends ICoreLoadingView {
-        void addHotGoodCommentList(HotGoodCommentBean data);
+   public interface IHotGoodCommentView extends ICoreLoadingView {
+      void addHotGoodCommentList(HotGoodCommentBean data);
 
-        void addTitle(String title);
+      void addTitle(String title);
 
-        void addListHeader(String created, String content);
-    }
-    public interface IHotGoodCommentPresenter{
-        void getHotGoodCommentList(int offset);
-    }
+      void addListHeader(String created, String content);
+   }
+
+   public interface IHotGoodCommentPresenter {
+      void getHotGoodCommentList(int offset);
+   }
 }

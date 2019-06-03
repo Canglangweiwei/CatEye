@@ -12,11 +12,11 @@ import io.reactivex.Observable;
  */
 
 public class MovieProCommentManager {
-    public Observable<MovieProCommentBean> getMovieProComment(int movieId, int offset){
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getMovieProComment(movieId,offset,10)
-                .compose(SchedulersCompat.<MovieProCommentBean>applyIoSchedulers());
-    }
+   public Observable<MovieProCommentBean> getMovieProComment(int movieId, int offset) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getMovieProComment(movieId, offset, 10)
+          .compose(SchedulersCompat.<MovieProCommentBean>applyIoSchedulers());
+   }
 }

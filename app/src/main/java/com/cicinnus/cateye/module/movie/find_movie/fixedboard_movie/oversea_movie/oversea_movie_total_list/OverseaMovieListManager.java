@@ -15,20 +15,20 @@ import io.reactivex.Observable;
 public class OverseaMovieListManager {
 
 
-    public Observable<OverseaHotMovieBean> getOverseaHotMovie(String area,int limit,int offset){
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getOverseaHotMovie(area,limit,offset)
-                .compose(SchedulersCompat.<OverseaHotMovieBean>applyIoSchedulers());
-    }
+   public Observable<OverseaHotMovieBean> getOverseaHotMovie(String area, int limit, int offset) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getOverseaHotMovie(area, limit, offset)
+          .compose(SchedulersCompat.<OverseaHotMovieBean>applyIoSchedulers());
+   }
 
-    public Observable<OverseaComingMovieBean> getOverseaComingMovie(String are,int limit,int offset){
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getOverseaComingMovie(are,limit,offset)
-                .compose(SchedulersCompat.<OverseaComingMovieBean>applyIoSchedulers());
+   public Observable<OverseaComingMovieBean> getOverseaComingMovie(String are, int limit, int offset) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getOverseaComingMovie(are, limit, offset)
+          .compose(SchedulersCompat.<OverseaComingMovieBean>applyIoSchedulers());
 
-    }
+   }
 }

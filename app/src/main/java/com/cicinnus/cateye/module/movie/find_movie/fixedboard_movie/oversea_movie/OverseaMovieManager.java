@@ -13,30 +13,32 @@ import io.reactivex.Observable;
 public class OverseaMovieManager {
 
 
-    /**
-     * 获取10条热映电影
-     * @param area 地区
-     * @return
-     */
+   /**
+    * 获取10条热映电影
+    *
+    * @param area 地区
+    * @return
+    */
 
-    public Observable<OverseaHotMovieBean> getOverseaHotMovie(String area){
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getOverseaHotMovie(area,10,0);
-    }
+   public Observable<OverseaHotMovieBean> getOverseaHotMovie(String area) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getOverseaHotMovie(area, 10, 0);
+   }
 
-    /**
-     * 获取10条待映电影
-     * @param area 地区
-     * @return
-     */
-    public Observable<OverseaComingMovieBean> getOverseaComingMovie(String area){
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getOverseaComingMovie(area,10,0);
-    }
+   /**
+    * 获取10条待映电影
+    *
+    * @param area 地区
+    * @return
+    */
+   public Observable<OverseaComingMovieBean> getOverseaComingMovie(String area) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getOverseaComingMovie(area, 10, 0);
+   }
 }
 
 

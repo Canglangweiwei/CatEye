@@ -16,33 +16,33 @@ import io.reactivex.functions.Consumer;
 
 public class PickCityPresenter extends BaseMVPPresenter<PickCityContract.IPickCityView> implements PickCityContract.IPickCityPresenter {
 
-    private final PickCityManager pickCityManager;
+   private final PickCityManager pickCityManager;
 
-    public PickCityPresenter(Activity activity, PickCityContract.IPickCityView view) {
-        super(activity, view);
-        pickCityManager = new PickCityManager();
-    }
+   public PickCityPresenter(Activity activity, PickCityContract.IPickCityView view) {
+      super(activity, view);
+      pickCityManager = new PickCityManager();
+   }
 
-    @Override
-    public void getCity() {
-        mView.showLoading();
-        addSubscribeUntilDestroy(pickCityManager.getCity()
-                .compose(SchedulersCompat.<PickCityBean>applyIoSchedulers())
-                .subscribe(new Consumer<PickCityBean>() {
-                    @Override
-                    public void accept(@NonNull PickCityBean pickCityBean) {
-                        mView.addCity(pickCityBean.getCts());
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(@NonNull Throwable throwable) {
-                        mView.showError(ExceptionHandle.handleException(throwable));
-                    }
-                }, new Action() {
-                    @Override
-                    public void run() {
-                        mView.showContent();
-                    }
-                }));
-    }
+   @Override
+   public void getCity() {
+      mView.showLoading();
+      addSubscribeUntilDestroy(pickCityManager.getCity()
+          .compose(SchedulersCompat.<PickCityBean>applyIoSchedulers())
+          .subscribe(new Consumer<PickCityBean>() {
+             @Override
+             public void accept(@NonNull PickCityBean pickCityBean) {
+                mView.addCity(pickCityBean.getCts());
+             }
+          }, new Consumer<Throwable>() {
+             @Override
+             public void accept(@NonNull Throwable throwable) {
+                mView.showError(ExceptionHandle.handleException(throwable));
+             }
+          }, new Action() {
+             @Override
+             public void run() {
+                mView.showContent();
+             }
+          }));
+   }
 }

@@ -25,94 +25,94 @@ import com.cicinnus.cateye.tools.UiUtils;
 
 public class CinemaAdapter extends BaseQuickAdapter<CinemaListBean.DataBean.CinemasBean, BaseViewHolder> {
 
-    private OnCinemaClickListener onCinemaClickListener;
+   private OnCinemaClickListener onCinemaClickListener;
 
-    public CinemaAdapter() {
-        super(R.layout.item_cinema);
-    }
+   public CinemaAdapter() {
+      super(R.layout.item_cinema);
+   }
 
-    @Override
-    protected void convert(BaseViewHolder helper, final CinemaListBean.DataBean.CinemasBean item) {
-        helper.setText(R.id.tv_cinema_name, item.getNm())
-                .setText(R.id.tv_address, item.getAddr())
-                .setText(R.id.tv_platform_activity, item.getPromotion().getPlatformActivityTag())
-                .setText(R.id.tv_card_activity, item.getPromotion().getCardPromotionTag())
-                .setText(R.id.tv_merchant_activity, item.getPromotion().getMerchantActivityTag())
-                .setText(R.id.tv_distance, item.getDistance());
+   @Override
+   protected void convert(BaseViewHolder helper, final CinemaListBean.DataBean.CinemasBean item) {
+      helper.setText(R.id.tv_cinema_name, item.getNm())
+          .setText(R.id.tv_address, item.getAddr())
+          .setText(R.id.tv_platform_activity, item.getPromotion().getPlatformActivityTag())
+          .setText(R.id.tv_card_activity, item.getPromotion().getCardPromotionTag())
+          .setText(R.id.tv_merchant_activity, item.getPromotion().getMerchantActivityTag())
+          .setText(R.id.tv_distance, item.getDistance());
 
-        helper.setVisible(R.id.tv_card_activity, item.getPromotion().getCardPromotionTag() != null);
-        helper.setVisible(R.id.tv_platform_activity, item.getPromotion().getPlatformActivityTag() != null);
-        helper.setVisible(R.id.tv_merchant_activity, item.getPromotion().getMerchantActivityTag() != null);
-
-
-        double price = item.getPrice();
-        TextView tvPrice = helper.getView(R.id.tv_price);
-        tvPrice.setText(String.format("%s元起", price));
-        Spannable spannable = new SpannableString(tvPrice.getText());
-        spannable.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.colorPrimary)),
-                0,
-                tvPrice.getText().toString().indexOf("元起"),
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        tvPrice.setText(spannable);
+      helper.setVisible(R.id.tv_card_activity, item.getPromotion().getCardPromotionTag() != null);
+      helper.setVisible(R.id.tv_platform_activity, item.getPromotion().getPlatformActivityTag() != null);
+      helper.setVisible(R.id.tv_merchant_activity, item.getPromotion().getMerchantActivityTag() != null);
 
 
-        // 添加标签
-        LinearLayout ll = helper.getView(R.id.ll_promotion);
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        layoutParams.setMargins(0, 0, UiUtils.dp2px(helper.itemView.getContext(), 4), 0);
-        if (helper.itemView.getTag() == null) {
+      double price = item.getPrice();
+      TextView tvPrice = helper.getView(R.id.tv_price);
+      tvPrice.setText(String.format("%s元起", price));
+      Spannable spannable = new SpannableString(tvPrice.getText());
+      spannable.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.colorPrimary)),
+          0,
+          tvPrice.getText().toString().indexOf("元起"),
+          Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+      tvPrice.setText(spannable);
 
-            // 座
-            if (item.getTag().getSell() == 1) {
-                TextView tv = createTextView(
-                        helper.itemView.getContext(),
-                        layoutParams,
-                        "座",
-                        "#579daf");
-                ll.addView(tv);
+
+      // 添加标签
+      LinearLayout ll = helper.getView(R.id.ll_promotion);
+      LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+      layoutParams.setMargins(0, 0, UiUtils.dp2px(helper.itemView.getContext(), 4), 0);
+      if (helper.itemView.getTag() == null) {
+
+         // 座
+         if (item.getTag().getSell() == 1) {
+            TextView tv = createTextView(
+                helper.itemView.getContext(),
+                layoutParams,
+                "座",
+                "#579daf");
+            ll.addView(tv);
+         }
+
+         if (item.getLabels() != null && item.getLabels().size() > 0) {
+            for (int i = 0; i < item.getLabels().size(); i++) {
+               TextView tv = createTextView(
+                   helper.itemView.getContext(),
+                   layoutParams,
+                   item.getLabels().get(i).getName(),
+                   item.getLabels().get(i).getColor());
+               ll.addView(tv);
             }
+         }
+         helper.itemView.setTag(ll);
+      }
 
-            if (item.getLabels() != null && item.getLabels().size() > 0) {
-                for (int i = 0; i < item.getLabels().size(); i++) {
-                    TextView tv = createTextView(
-                            helper.itemView.getContext(),
-                            layoutParams,
-                            item.getLabels().get(i).getName(),
-                            item.getLabels().get(i).getColor());
-                    ll.addView(tv);
-                }
+      helper.itemView.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+            CinemaDetailActivity.start(mContext, item.getId(), item.getNm());
+            if (onCinemaClickListener != null) {
+               onCinemaClickListener.onClick(item.getId());
             }
-            helper.itemView.setTag(ll);
-        }
+         }
+      });
+   }
 
-        helper.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CinemaDetailActivity.start(mContext, item.getId(), item.getNm());
-                if (onCinemaClickListener != null) {
-                    onCinemaClickListener.onClick(item.getId());
-                }
-            }
-        });
-    }
+   private TextView createTextView(Context context, LinearLayout.LayoutParams layoutParams, String content, String color) {
+      TextView tv = new TextView(context);
+      tv.setLayoutParams(layoutParams);
+      tv.setTextSize(11f);
+      tv.setText(content);
+      tv.setTextColor(Color.parseColor(color));
+      tv.setBackground(mContext.getResources().getDrawable(R.drawable.bg_text_promotion));
+      GradientDrawable background = (GradientDrawable) tv.getBackground();
+      background.setStroke(2, Color.parseColor(color));
+      return tv;
+   }
 
-    private TextView createTextView(Context context, LinearLayout.LayoutParams layoutParams, String content, String color) {
-        TextView tv = new TextView(context);
-        tv.setLayoutParams(layoutParams);
-        tv.setTextSize(11f);
-        tv.setText(content);
-        tv.setTextColor(Color.parseColor(color));
-        tv.setBackground(mContext.getResources().getDrawable(R.drawable.bg_text_promotion));
-        GradientDrawable background = (GradientDrawable) tv.getBackground();
-        background.setStroke(2, Color.parseColor(color));
-        return tv;
-    }
+   public void setOnCinemaClickListener(OnCinemaClickListener onCinemaClickListener) {
+      this.onCinemaClickListener = onCinemaClickListener;
+   }
 
-    public void setOnCinemaClickListener(OnCinemaClickListener onCinemaClickListener) {
-        this.onCinemaClickListener = onCinemaClickListener;
-    }
-
-    public interface OnCinemaClickListener {
-        void onClick(int cinemaId);
-    }
+   public interface OnCinemaClickListener {
+      void onClick(int cinemaId);
+   }
 }

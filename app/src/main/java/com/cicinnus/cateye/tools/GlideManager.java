@@ -9,39 +9,39 @@ import com.cicinnus.cateye.R;
 
 public class GlideManager {
 
-    public static void loadImage(Context context, String url, int errorImg, ImageView imageView) {
-        Glide.with(context)
-                .load(url)
-                .error(errorImg)
-                .placeholder(R.drawable.icon_default)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .dontAnimate()
-                .into(imageView);
-    }
+   public static void loadImage(Context context, String url, int errorImg, ImageView imageView) {
+      Glide.with(context)
+          .load(url)
+          .error(errorImg)
+          .placeholder(R.drawable.icon_default)
+          .diskCacheStrategy(DiskCacheStrategy.ALL)
+          .dontAnimate()
+          .into(imageView);
+   }
 
-    public static void loadImage(Context context, String url, ImageView imageView) {
-        Glide.with(context)
-                .load(url)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .dontAnimate()
-                .into(imageView);
-    }
+   public static void loadImage(Context context, String url, ImageView imageView) {
+      Glide.with(context)
+          .load(url)
+          .diskCacheStrategy(DiskCacheStrategy.ALL)
+          .dontAnimate()
+          .into(imageView);
+   }
 
-    public static void loadImage(Context context, int drawable, ImageView imageView) {
-        Glide.with(context)
-                .load(drawable)
-                .placeholder(R.drawable.icon_default)
-                .dontAnimate()
-                .into(imageView);
-    }
+   public static void loadImage(Context context, int drawable, ImageView imageView) {
+      Glide.with(context)
+          .load(drawable)
+          .placeholder(R.drawable.icon_default)
+          .dontAnimate()
+          .into(imageView);
+   }
 
-    public static void clearPicCache(Context context) {
-        final Glide glide = Glide.get(context);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                glide.clearDiskCache();
-            }
-        }).start();
-    }
+   public static void clearPicCache(Context context) {
+      final Glide glide = Glide.get(context);
+      new Thread(new Runnable() {
+         @Override
+         public void run() {
+            glide.clearDiskCache();
+         }
+      }).start();
+   }
 }

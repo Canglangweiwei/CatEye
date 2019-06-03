@@ -10,11 +10,11 @@ import java.util.List;
 
 public class AwardsListContract {
 
-    public interface IAwardsListView extends ICoreLoadingView {
-        void addAwardsList(List<AwardsListBean.DataBean> data);
-    }
+   public interface IAwardsListView extends ICoreLoadingView {
+      void addAwardsList(List<AwardsListBean.DataBean> data);
+   }
 
-    public interface IAwardsListPresenter {
-        void getAwardsList();
-    }
+   public interface IAwardsListPresenter {
+      void getAwardsList();
+   }
 }

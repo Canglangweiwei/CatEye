@@ -16,62 +16,63 @@ import io.reactivex.ObservableSource;
 
 public class MovieStarManage {
 
-    /**
-     * 获取影人资料
-     *
-     * @param starId
-     * @return
-     */
-    public ObservableSource<MovieStarInfoBean> getMovieStarInfo(int starId) {
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getMovieStarInfoBean(starId);
-    }
+   /**
+    * 获取影人资料
+    *
+    * @param starId
+    * @return
+    */
+   public ObservableSource<MovieStarInfoBean> getMovieStarInfo(int starId) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getMovieStarInfoBean(starId);
+   }
 
-    /**
-     * 参演电影
-     *
-     * @param starId
-     * @return
-     */
-    public ObservableSource<StarMoviesBean> getStarMovies(int starId) {
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getStarMovies(starId, 20, 0);
-    }
+   /**
+    * 参演电影
+    *
+    * @param starId
+    * @return
+    */
+   public ObservableSource<StarMoviesBean> getStarMovies(int starId) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getStarMovies(starId, 20, 0);
+   }
 
-    /**
-     * 影人荣誉
-     *
-     * @param starId
-     * @return
-     */
-    public ObservableSource<MovieStarHonor> getMovieStarHonor(int starId) {
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getMovieStarHonors(starId);
-    }
+   /**
+    * 影人荣誉
+    *
+    * @param starId
+    * @return
+    */
+   public ObservableSource<MovieStarHonor> getMovieStarHonor(int starId) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getMovieStarHonors(starId);
+   }
 
-    /**
-     * 相关资讯
-     * @param starId
-     * @return
-     */
-    public ObservableSource<RelatedInformationBean> getRelatedInformation(int starId){
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getRelatedInformation(starId);
-    }
+   /**
+    * 相关资讯
+    *
+    * @param starId
+    * @return
+    */
+   public ObservableSource<RelatedInformationBean> getRelatedInformation(int starId) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getRelatedInformation(starId);
+   }
 
-    public ObservableSource<StarRelatedPeople> getStarRelatedPeople(int starId){
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getStarRelatedPeople(starId);
-    }
+   public ObservableSource<StarRelatedPeople> getStarRelatedPeople(int starId) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getStarRelatedPeople(starId);
+   }
 
 }

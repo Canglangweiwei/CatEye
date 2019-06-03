@@ -12,11 +12,11 @@ import io.reactivex.Observable;
 
 public class MovieTopicManager {
 
-    public Observable<MovieTopicListBean> getMovieTopicList(int movieId, int offset){
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getMovieTopicList(movieId,10,offset)
-                .compose(SchedulersCompat.<MovieTopicListBean>applyIoSchedulers());
-    }
+   public Observable<MovieTopicListBean> getMovieTopicList(int movieId, int offset) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getMovieTopicList(movieId, 10, offset)
+          .compose(SchedulersCompat.<MovieTopicListBean>applyIoSchedulers());
+   }
 }

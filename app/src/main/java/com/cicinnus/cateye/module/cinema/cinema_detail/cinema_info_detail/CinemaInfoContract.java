@@ -9,22 +9,22 @@ import com.cicinnus.retrofitlib.base.ICoreLoadingView;
  */
 
 public class CinemaInfoContract {
-    public interface ICinemaInfoView extends ICoreLoadingView {
-        void addCinemaInfo(CinemaInfoBean.DataBean data);
+   public interface ICinemaInfoView extends ICoreLoadingView {
+      void addCinemaInfo(CinemaInfoBean.DataBean data);
 
-        void addCinemaComment(CinemaCommentBean commentBean);
+      void addCinemaComment(CinemaCommentBean commentBean);
 
-        void addMoreCinemaComment(CinemaCommentBean commentBean);
+      void addMoreCinemaComment(CinemaCommentBean commentBean);
 
-        void addMoreCinemaCommentFail(String s);
-    }
+      void addMoreCinemaCommentFail(String s);
+   }
 
-    public interface ICinemaInfoPresenter {
-        void getCinemaInfo(int cinemaId);
+   public interface ICinemaInfoPresenter {
+      void getCinemaInfo(int cinemaId);
 
-        void getCinemaComment(int cinemaId, int offset);
+      void getCinemaComment(int cinemaId, int offset);
 
-        void getMoreCinemaComment(int cinemaId, int offset);
+      void getMoreCinemaComment(int cinemaId, int offset);
 
-    }
+   }
 }

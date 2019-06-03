@@ -10,22 +10,23 @@ import java.util.List;
  */
 
 public class HotMovieListContract {
-    public interface IHotMovieListView extends ICoreLoadingView {
 
-        void addHotMovieList(List<HotMovieListBean.DataBean.HotBean> hot);
+   public interface IHotMovieListView extends ICoreLoadingView {
 
-        void addMovieIds(List<Integer> movieIds);
+      void addHotMovieList(List<HotMovieListBean.DataBean.HotBean> hot);
 
-        void addMoreMovies(List<HotMovieListBean.DataBean.HotBean> movies);
+      void addMovieIds(List<Integer> movieIds);
 
-        void loadMoreError();
+      void addMoreMovies(List<HotMovieListBean.DataBean.HotBean> movies);
 
-        void loadMoreCompleted();
-    }
+      void loadMoreError();
 
-    public interface IHotMoviePresenter {
-        void getHotMovieList(int limit);
+      void loadMoreCompleted();
+   }
 
-        void getMoreHotMovieList(int headline, String movieIds);
-    }
+   public interface IHotMoviePresenter {
+      void getHotMovieList(int limit);
+
+      void getMoreHotMovieList(int headline, String movieIds);
+   }
 }

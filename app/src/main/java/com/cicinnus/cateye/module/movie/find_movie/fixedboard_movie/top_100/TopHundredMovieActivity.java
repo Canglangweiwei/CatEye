@@ -21,81 +21,81 @@ import java.util.List;
 public class TopHundredMovieActivity extends BaseRecyclerViewActivity<TopHundredMoviePresenter> implements TopHundredMovieContract.ITopHundredMovieView {
 
 
-    public static void start(Context context) {
-        Intent starter = new Intent(context, TopHundredMovieActivity.class);
-        context.startActivity(starter);
-    }
+   public static void start(Context context) {
+      Intent starter = new Intent(context, TopHundredMovieActivity.class);
+      context.startActivity(starter);
+   }
 
-    private TopHundredMovieAdapter topHundredMovieAdapter;
-    private int offset;
-    private TextView tvCreate;
-    private TextView tvContent;
+   private TopHundredMovieAdapter topHundredMovieAdapter;
+   private int offset;
+   private TextView tvCreate;
+   private TextView tvContent;
 
 
-    @Override
-    protected TopHundredMoviePresenter getMPresenter() {
-        return new TopHundredMoviePresenter(mContext, this);
-    }
+   @Override
+   protected TopHundredMoviePresenter getMPresenter() {
+      return new TopHundredMoviePresenter(mContext, this);
+   }
 
-    @Override
-    protected void initEventAndData() {
-        super.initEventAndData();
-        topHundredMovieAdapter = new TopHundredMovieAdapter();
-        rvBaseRecyclerView.setAdapter(topHundredMovieAdapter);
-        View headerView = getLayoutInflater().inflate(R.layout.layout_fixboard_header, (ViewGroup) rvBaseRecyclerView.getParent(), false);
-        tvContent = (TextView) headerView.findViewById(R.id.tv_content);
-        tvCreate = (TextView) headerView.findViewById(R.id.tv_createDate);
-        topHundredMovieAdapter.addHeaderView(headerView);
-        topHundredMovieAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
-            @Override
-            public void onLoadMoreRequested() {
-                ((TopHundredMoviePresenter) mPresenter).getTopHundredMovie(offset);
-            }
-        },rvBaseRecyclerView);
-        ((TopHundredMoviePresenter) mPresenter).getTopHundredMovie(offset);
+   @Override
+   protected void initEventAndData() {
+      super.initEventAndData();
+      topHundredMovieAdapter = new TopHundredMovieAdapter();
+      rvBaseRecyclerView.setAdapter(topHundredMovieAdapter);
+      View headerView = getLayoutInflater().inflate(R.layout.layout_fixboard_header, (ViewGroup) rvBaseRecyclerView.getParent(), false);
+      tvContent = (TextView) headerView.findViewById(R.id.tv_content);
+      tvCreate = (TextView) headerView.findViewById(R.id.tv_createDate);
+      topHundredMovieAdapter.addHeaderView(headerView);
+      topHundredMovieAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
+         @Override
+         public void onLoadMoreRequested() {
+            ((TopHundredMoviePresenter) mPresenter).getTopHundredMovie(offset);
+         }
+      }, rvBaseRecyclerView);
+      ((TopHundredMoviePresenter) mPresenter).getTopHundredMovie(offset);
 
-    }
+   }
 
-    @Override
-    protected void setPullToRefresh() {
-        offset = 0;
-        topHundredMovieAdapter.setNewData(new ArrayList<TopHundredMovieBean.DataBean.MoviesBean>());
-        ((TopHundredMoviePresenter) mPresenter).getTopHundredMovie(offset);
-    }
+   @Override
+   protected void setPullToRefresh() {
+      offset = 0;
+      topHundredMovieAdapter.setNewData(new ArrayList<TopHundredMovieBean.DataBean.MoviesBean>());
+      ((TopHundredMoviePresenter) mPresenter).getTopHundredMovie(offset);
+   }
 
-    @Override
-    protected String getTitleText() {
-        return "TOP100榜单";
-    }
+   @Override
+   protected String getTitleText() {
+      return "TOP100榜单";
+   }
 
-    @Override
-    protected void onErrorResetData() {
-        offset = 0;
-        ((TopHundredMoviePresenter) mPresenter).getTopHundredMovie(offset);
+   @Override
+   protected void onErrorResetData() {
+      offset = 0;
+      ((TopHundredMoviePresenter) mPresenter).getTopHundredMovie(offset);
 
-    }
+   }
 
-    @Override
-    public void addTopHundredMovie(List<TopHundredMovieBean.DataBean.MoviesBean> movies) {
-        if (movies.size() > 0) {
-            offset += 10;
-            topHundredMovieAdapter.addData(movies);
-            topHundredMovieAdapter.loadMoreComplete();
-        } else {
-            topHundredMovieAdapter.loadMoreEnd();
-        }
+   @Override
+   public void addTopHundredMovie(List<TopHundredMovieBean.DataBean.MoviesBean> movies) {
+      if (movies.size() > 0) {
+         offset += 10;
+         topHundredMovieAdapter.addData(movies);
+         topHundredMovieAdapter.loadMoreComplete();
+      } else {
+         topHundredMovieAdapter.loadMoreEnd();
+      }
 
-    }
+   }
 
-    @Override
-    public void addContent(String created, String content) {
-        tvCreate.setText(created);
-        tvContent.setText(content);
-    }
+   @Override
+   public void addContent(String created, String content) {
+      tvCreate.setText(created);
+      tvContent.setText(content);
+   }
 
-    @Override
-    protected void onPause() {
-        overridePendingTransition(0,0);
-        super.onPause();
-    }
+   @Override
+   protected void onPause() {
+      overridePendingTransition(0, 0);
+      super.onPause();
+   }
 }

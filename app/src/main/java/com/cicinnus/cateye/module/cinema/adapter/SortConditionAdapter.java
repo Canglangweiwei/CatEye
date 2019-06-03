@@ -15,43 +15,43 @@ import java.util.List;
 
 public class SortConditionAdapter extends BaseQuickAdapter<SortConditionBean, BaseViewHolder> {
 
-    private OnSortConditionClickListener onSortConditionClickListener;
-    private int selectedPos = 0;
+   private OnSortConditionClickListener onSortConditionClickListener;
+   private int selectedPos = 0;
 
-    public SortConditionAdapter(List<SortConditionBean> data) {
-        super(R.layout.item_sort_condition,data);
-    }
+   public SortConditionAdapter(List<SortConditionBean> data) {
+      super(R.layout.item_sort_condition, data);
+   }
 
-    @Override
-    protected void convert(final BaseViewHolder helper, final SortConditionBean item) {
-        helper.setText(R.id.tv_sort_condition, item.getName());
+   @Override
+   protected void convert(final BaseViewHolder helper, final SortConditionBean item) {
+      helper.setText(R.id.tv_sort_condition, item.getName());
 
-        helper.setTextColor(R.id.tv_sort_condition, item.isSelect ?
-                mContext.getResources().getColor(R.color.colorPrimary) :
-                mContext.getResources().getColor(R.color.text_gray_deep));
+      helper.setTextColor(R.id.tv_sort_condition, item.isSelect ?
+          mContext.getResources().getColor(R.color.colorPrimary) :
+          mContext.getResources().getColor(R.color.text_gray_deep));
 
-        helper.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (selectedPos != helper.getAdapterPosition()) {
-                    mData.get(selectedPos).isSelect = false;
-                    notifyItemChanged(selectedPos);
-                    selectedPos = helper.getAdapterPosition();
-                    mData.get(selectedPos).isSelect = true;
-                    notifyItemChanged(selectedPos);
-                }
-                if (onSortConditionClickListener != null) {
-                    onSortConditionClickListener.onClick(item);
-                }
+      helper.itemView.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+            if (selectedPos != helper.getAdapterPosition()) {
+               mData.get(selectedPos).isSelect = false;
+               notifyItemChanged(selectedPos);
+               selectedPos = helper.getAdapterPosition();
+               mData.get(selectedPos).isSelect = true;
+               notifyItemChanged(selectedPos);
             }
-        });
-    }
+            if (onSortConditionClickListener != null) {
+               onSortConditionClickListener.onClick(item);
+            }
+         }
+      });
+   }
 
-    public void setOnSortConditionClickListener(OnSortConditionClickListener onSortConditionClickListener) {
-        this.onSortConditionClickListener = onSortConditionClickListener;
-    }
+   public void setOnSortConditionClickListener(OnSortConditionClickListener onSortConditionClickListener) {
+      this.onSortConditionClickListener = onSortConditionClickListener;
+   }
 
-    public interface OnSortConditionClickListener {
-        void onClick(SortConditionBean item);
-    }
+   public interface OnSortConditionClickListener {
+      void onClick(SortConditionBean item);
+   }
 }

@@ -22,40 +22,40 @@ import java.util.List;
  */
 
 public class MovieDetailContract {
-    public interface IMovieDetailView extends ICoreLoadingView {
-        void addMovieBasicData(MovieBasicDataBean.DataBean.MovieBean movie);
+   public interface IMovieDetailView extends ICoreLoadingView {
+      void addMovieBasicData(MovieBasicDataBean.DataBean.MovieBean movie);
 
-        void addMovieTips(MovieTipsBean.DataBean tips);
+      void addMovieTips(MovieTipsBean.DataBean tips);
 
-        void addMovieStarList(MovieStarBean movieStarBean);
+      void addMovieStarList(MovieStarBean movieStarBean);
 
-        void addMovieMoneyBox(MovieMoneyBoxBean moneyBoxBean);
+      void addMovieMoneyBox(MovieMoneyBoxBean moneyBoxBean);
 
-        void addMovieAwards(List<MovieAwardsBean.DataBean> movieAwards);
+      void addMovieAwards(List<MovieAwardsBean.DataBean> movieAwards);
 
-        void addMovieResource(List<MovieResourceBean.DataBean> movieResources);
+      void addMovieResource(List<MovieResourceBean.DataBean> movieResources);
 
-        void addMovieCommentTag(List<MovieCommentTagBean.DataBean> commentTags);
+      void addMovieCommentTag(List<MovieCommentTagBean.DataBean> commentTags);
 
-        void addMovieShortComment(MovieShortCommentBean movieShortCommentBean);
+      void addMovieShortComment(MovieShortCommentBean movieShortCommentBean);
 
-        void addMovieLongComment(MovieLongCommentBean.DataBean movieLongComments);
+      void addMovieLongComment(MovieLongCommentBean.DataBean movieLongComments);
 
-        void addMovieRelatedInformation(List<MovieRelatedInformationBean.DataBean.NewsListBean> newsListBean);
+      void addMovieRelatedInformation(List<MovieRelatedInformationBean.DataBean.NewsListBean> newsListBean);
 
-        void addRelatedMovie(List<RelatedMovieBean.DataBean> relatedMovies);
+      void addRelatedMovie(List<RelatedMovieBean.DataBean> relatedMovies);
 
-        void addMovieTopic(MovieTopicBean.DataBean movieTopicBean);
+      void addMovieTopic(MovieTopicBean.DataBean movieTopicBean);
 
-        void addMovieProComment(MovieProCommentBean data);
+      void addMovieProComment(MovieProCommentBean data);
 
-    }
+   }
 
-    public interface IMoviePresenter {
-        void getMovieData(int movieId);
+   public interface IMoviePresenter {
+      void getMovieData(int movieId);
 
-        void getMovieSecondData(int movieId);
+      void getMovieSecondData(int movieId);
 
-        void getMovieMoreData(int movieId);
-    }
+      void getMovieMoreData(int movieId);
+   }
 }

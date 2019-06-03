@@ -14,21 +14,20 @@ import io.reactivex.Observable;
 public class AwardsMovieManager {
 
 
-    public Observable<AwardsBean> getAwards(int festivalId){
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getAwards(festivalId)
-                .compose(SchedulersCompat.<AwardsBean>applyIoSchedulers());
-    }
+   public Observable<AwardsBean> getAwards(int festivalId) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getAwards(festivalId)
+          .compose(SchedulersCompat.<AwardsBean>applyIoSchedulers());
+   }
 
 
-
-    public Observable<AwardsMovieListBean> getAwardsMovie(int festSessionId, int limit,int offset) {
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getAwardsMovie(festSessionId, limit, offset)
-                .compose(SchedulersCompat.<AwardsMovieListBean>applyIoSchedulers());
-    }
+   public Observable<AwardsMovieListBean> getAwardsMovie(int festSessionId, int limit, int offset) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getAwardsMovie(festSessionId, limit, offset)
+          .compose(SchedulersCompat.<AwardsMovieListBean>applyIoSchedulers());
+   }
 }

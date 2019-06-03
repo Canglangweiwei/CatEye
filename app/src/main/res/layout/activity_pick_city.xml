@@ -1,73 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:focusable="true"
-    android:focusableInTouchMode="true"
-    android:orientation="vertical">
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   android:focusable="true"
+   android:focusableInTouchMode="true"
+   android:orientation="vertical">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/layout_normal_back_title" />
+   <include
+      android:id="@+id/toolbar"
+      layout="@layout/layout_normal_back_title" />
 
-    <RelativeLayout
-        android:id="@+id/ll_search"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/toolbar"
-        android:background="@color/white"
-        android:padding="@dimen/dp_6">
+   <RelativeLayout
+      android:id="@+id/ll_search"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/toolbar"
+      android:background="@color/white"
+      android:padding="@dimen/dp_6">
 
-        <ImageView
-            android:id="@+id/iv_clear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/ic_clear_gray"
-            android:visibility="invisible" />
+      <ImageView
+         android:id="@+id/iv_clear"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentEnd="true"
+         android:layout_alignParentRight="true"
+         android:layout_centerVertical="true"
+         android:contentDescription="@string/app_name"
+         android:src="@drawable/ic_clear_gray"
+         android:visibility="invisible" />
 
-        <EditText
-            android:id="@+id/et_city_name"
+      <EditText
+         android:id="@+id/et_city_name"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_toStartOf="@id/iv_clear"
+         android:layout_toLeftOf="@id/iv_clear"
+         android:background="@null"
+         android:drawableStart="@drawable/ic_search_small_2"
+         android:drawableLeft="@drawable/ic_search_small_2"
+         android:drawablePadding="@dimen/dp_10"
+         android:hint="请输入城市中文名或拼音"
+         android:paddingTop="@dimen/dp_4"
+         android:paddingBottom="@dimen/dp_4"
+         android:textSize="@dimen/sp_14" />
+   </RelativeLayout>
+
+   <com.cicinnus.cateye.view.ProgressLayout
+      android:id="@+id/progressLayout"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_below="@id/ll_search">
+
+      <com.cicinnus.cateye.view.SuperSwipeRefreshLayout
+         android:id="@+id/swipe"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent">
+
+         <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_city"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_toStartOf="@id/iv_clear"
-            android:layout_toLeftOf="@id/iv_clear"
-            android:background="@null"
-            android:drawableStart="@drawable/ic_search_small_2"
-            android:drawableLeft="@drawable/ic_search_small_2"
-            android:drawablePadding="@dimen/dp_10"
-            android:hint="请输入城市中文名或拼音"
-            android:paddingTop="@dimen/dp_4"
-            android:paddingBottom="@dimen/dp_4"
-            android:textSize="@dimen/sp_14" />
-    </RelativeLayout>
+            android:layout_height="match_parent" />
+      </com.cicinnus.cateye.view.SuperSwipeRefreshLayout>
+   </com.cicinnus.cateye.view.ProgressLayout>
 
-    <com.cicinnus.cateye.view.ProgressLayout
-        android:id="@+id/progressLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/ll_search">
-
-        <com.cicinnus.cateye.view.SuperSwipeRefreshLayout
-            android:id="@+id/swipe"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_city"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </com.cicinnus.cateye.view.SuperSwipeRefreshLayout>
-    </com.cicinnus.cateye.view.ProgressLayout>
-
-    <com.cicinnus.cateye.view.SlideBar
-        android:id="@+id/slideBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/ll_search"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true" />
+   <com.cicinnus.cateye.view.SlideBar
+      android:id="@+id/slideBar"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/ll_search"
+      android:layout_alignParentEnd="true"
+      android:layout_alignParentRight="true" />
 </RelativeLayout>

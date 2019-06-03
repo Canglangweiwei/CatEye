@@ -9,11 +9,11 @@ import java.util.List;
  */
 
 public class PickCityContract {
-    public interface IPickCityView extends ICoreLoadingView{
-        void addCity(List<PickCityBean.CtsBean> cts);
-    }
+   public interface IPickCityView extends ICoreLoadingView {
+      void addCity(List<PickCityBean.CtsBean> cts);
+   }
 
-    public interface IPickCityPresenter{
-        void getCity();
-    }
+   public interface IPickCityPresenter {
+      void getCity();
+   }
 }

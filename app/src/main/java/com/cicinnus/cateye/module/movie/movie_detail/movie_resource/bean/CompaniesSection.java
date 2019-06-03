@@ -7,11 +7,11 @@ import com.chad.library.adapter.base.entity.SectionEntity;
  */
 
 public class CompaniesSection extends SectionEntity<MovieRelatedCompanies.DataBean.ItemsBean> {
-    public CompaniesSection(boolean isHeader, String header) {
-        super(isHeader, header);
-    }
+   public CompaniesSection(boolean isHeader, String header) {
+      super(isHeader, header);
+   }
 
-    public CompaniesSection(MovieRelatedCompanies.DataBean.ItemsBean itemsBean) {
-        super(itemsBean);
-    }
+   public CompaniesSection(MovieRelatedCompanies.DataBean.ItemsBean itemsBean) {
+      super(itemsBean);
+   }
 }

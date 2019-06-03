@@ -16,36 +16,36 @@ import com.cicinnus.cateye.tools.ImgSizeUtil;
 
 public class MostExpectMovieAdapter extends BaseQuickAdapter<MostExpectMovieBean.DataBean.MoviesBean, BaseViewHolder> {
 
-    public MostExpectMovieAdapter() {
-        super(R.layout.item_recent_expect, null);
-    }
+   public MostExpectMovieAdapter() {
+      super(R.layout.item_recent_expect, null);
+   }
 
-    @Override
-    protected void convert(BaseViewHolder helper, final MostExpectMovieBean.DataBean.MoviesBean item) {
+   @Override
+   protected void convert(BaseViewHolder helper, final MostExpectMovieBean.DataBean.MoviesBean item) {
 
-        String imgUrl = ImgSizeUtil.processUrl(item.getImg(), 224, 315);
-        GlideManager.loadImage(mContext, imgUrl, (ImageView) helper.getView(R.id.iv_movie_img));
+      String imgUrl = ImgSizeUtil.processUrl(item.getImg(), 224, 315);
+      GlideManager.loadImage(mContext, imgUrl, (ImageView) helper.getView(R.id.iv_movie_img));
 
 
-        if (helper.getAdapterPosition() < 4) {
-            ((ImageView) helper.getView(R.id.iv_movie_rank)).setImageResource(R.drawable.ic_yellow_angle_small);
-        } else {
-            ((ImageView) helper.getView(R.id.iv_movie_rank)).setImageResource(R.drawable.ic_gray_angle);
-        }
+      if (helper.getAdapterPosition() < 4) {
+         ((ImageView) helper.getView(R.id.iv_movie_rank)).setImageResource(R.drawable.ic_yellow_angle_small);
+      } else {
+         ((ImageView) helper.getView(R.id.iv_movie_rank)).setImageResource(R.drawable.ic_gray_angle);
+      }
 
-        helper.setText(R.id.tv_movie_name, item.getNm())
-                .setText(R.id.tv_movie_desc, item.getStar())
-                .setText(R.id.tv_movie_desc, item.getPubDesc())
-                .setText(R.id.tv_total_wish, String.format("总想看:%s人", item.getWish()))
-                .setText(R.id.tv_new_wish, String.format("%s", item.getMonthWish()))
-                .setText(R.id.tv_movie_rank, String.format("%s", helper.getAdapterPosition()));
+      helper.setText(R.id.tv_movie_name, item.getNm())
+          .setText(R.id.tv_movie_desc, item.getStar())
+          .setText(R.id.tv_movie_desc, item.getPubDesc())
+          .setText(R.id.tv_total_wish, String.format("总想看:%s人", item.getWish()))
+          .setText(R.id.tv_new_wish, String.format("%s", item.getMonthWish()))
+          .setText(R.id.tv_movie_rank, String.format("%s", helper.getAdapterPosition()));
 
-        helper.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MovieDetailActivity.start(mContext,item.getId());
-            }
-        });
+      helper.itemView.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+            MovieDetailActivity.start(mContext, item.getId());
+         }
+      });
 
-    }
+   }
 }

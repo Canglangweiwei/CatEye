@@ -13,30 +13,30 @@ import java.util.List;
 
 public class WaitMovieFragmentContract {
 
-    public interface IWaitMovieView extends ICoreLoadingView {
-        void addTrailerRecommendMovieList(List<TrailerRecommendBean.DataBean> data);
+   public interface IWaitMovieView extends ICoreLoadingView {
+      void addTrailerRecommendMovieList(List<TrailerRecommendBean.DataBean> data);
 
-        void addRecentExpectMovieList(List<ExpectMovieBean.DataBean.ComingBean> coming);
+      void addRecentExpectMovieList(List<ExpectMovieBean.DataBean.ComingBean> coming);
 
-        void addWaitMovieList(List<WaitMovieBean.DataBean.ComingBean> coming);
+      void addWaitMovieList(List<WaitMovieBean.DataBean.ComingBean> coming);
 
-        void addIds(List<Integer> movieIds);
+      void addIds(List<Integer> movieIds);
 
-        void addMoreWaitMovie(List<WaitMovieBean.DataBean.ComingBean> coming);
+      void addMoreWaitMovie(List<WaitMovieBean.DataBean.ComingBean> coming);
 
-        void loadMoreFail();
+      void loadMoreFail();
 
-        void loadMoreComplete();
-    }
+      void loadMoreComplete();
+   }
 
-    public interface IWaitMoviePresenter {
+   public interface IWaitMoviePresenter {
 
-        void getTrailerRecommendMovie();
+      void getTrailerRecommendMovie();
 
-        void getRecentExpect(int offset, int limit);
+      void getRecentExpect(int offset, int limit);
 
-        void getWaitMovieList(int limit, int offset, int limit2);
+      void getWaitMovieList(int limit, int offset, int limit2);
 
-        void getMoreWaitMovie(String s);
-    }
+      void getMoreWaitMovie(String s);
+   }
 }

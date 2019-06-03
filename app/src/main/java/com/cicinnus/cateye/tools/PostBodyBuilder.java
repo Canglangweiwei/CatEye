@@ -16,42 +16,42 @@ import java.util.List;
 public class PostBodyBuilder {
 
 
-    private PostRequestBean postRequestBean;
+   private PostRequestBean postRequestBean;
 
-    private List<String> keyList;
-    private List<String> valueList;
+   private List<String> keyList;
+   private List<String> valueList;
 
-    public PostBodyBuilder() {
-        keyList = new ArrayList<>();
-        valueList = new ArrayList<>();
-    }
+   public PostBodyBuilder() {
+      keyList = new ArrayList<>();
+      valueList = new ArrayList<>();
+   }
 
-    public PostBodyBuilder addKeyValue(@NonNull String key, @NonNull String value) {
-        keyList.add(key);
-        valueList.add(value);
-        return this;
-    }
+   public PostBodyBuilder addKeyValue(@NonNull String key, @NonNull String value) {
+      keyList.add(key);
+      valueList.add(value);
+      return this;
+   }
 
-    public PostBodyBuilder build() {
-        List<PostRequestBean.ResourcesBean> resourcesBeanList = new ArrayList<>();
-        for (int i = 0; i < keyList.size(); i++) {
-            PostRequestBean.ResourcesBean resourcesBean = new PostRequestBean.ResourcesBean();
-            resourcesBean.setMethod(keyList.get(i));
-            resourcesBean.setUrl(valueList.get(i));
-            resourcesBeanList.add(resourcesBean);
-        }
-        postRequestBean = new PostRequestBean();
-        postRequestBean.setForm("map");
-        postRequestBean.setResources(resourcesBeanList);
-        return this;
-    }
+   public PostBodyBuilder build() {
+      List<PostRequestBean.ResourcesBean> resourcesBeanList = new ArrayList<>();
+      for (int i = 0; i < keyList.size(); i++) {
+         PostRequestBean.ResourcesBean resourcesBean = new PostRequestBean.ResourcesBean();
+         resourcesBean.setMethod(keyList.get(i));
+         resourcesBean.setUrl(valueList.get(i));
+         resourcesBeanList.add(resourcesBean);
+      }
+      postRequestBean = new PostRequestBean();
+      postRequestBean.setForm("map");
+      postRequestBean.setResources(resourcesBeanList);
+      return this;
+   }
 
-    public String getRequestBodyContent() {
-        if (postRequestBean.getResources().size() != 0) {
-            return new Gson().toJson(postRequestBean);
-        }
-        return new Exception("emptyBody").toString();
-    }
+   public String getRequestBodyContent() {
+      if (postRequestBean.getResources().size() != 0) {
+         return new Gson().toJson(postRequestBean);
+      }
+      return new Exception("emptyBody").toString();
+   }
 
 
 }

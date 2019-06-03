@@ -7,11 +7,11 @@ import com.chad.library.adapter.base.entity.SectionEntity;
  */
 
 public class AwardsSection extends SectionEntity<AwardsListBean.DataBean.FestivalsBean> {
-    public AwardsSection(AwardsListBean.DataBean.FestivalsBean dataBean) {
-        super(dataBean);
-    }
+   public AwardsSection(AwardsListBean.DataBean.FestivalsBean dataBean) {
+      super(dataBean);
+   }
 
-    public AwardsSection(boolean isHeader, String header) {
-        super(isHeader, header);
-    }
+   public AwardsSection(boolean isHeader, String header) {
+      super(isHeader, header);
+   }
 }

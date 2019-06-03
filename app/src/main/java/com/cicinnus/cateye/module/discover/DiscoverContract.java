@@ -9,16 +9,16 @@ import java.util.List;
  */
 
 public class DiscoverContract {
-    interface IDiscoverView extends ICoreLoadingView {
-        void addDiscoverData(List<DiscoverBean.DataBean.FeedsBean> feeds);
+   interface IDiscoverView extends ICoreLoadingView {
+      void addDiscoverData(List<DiscoverBean.DataBean.FeedsBean> feeds);
 
-        void addDiscoverHeaderData(List<DiscoverHeaderBean.DataBean> data);
-    }
+      void addDiscoverHeaderData(List<DiscoverHeaderBean.DataBean> data);
+   }
 
-    interface IDiscoverPresenter {
-        void getDiscoverData(int offset, int limit);
+   interface IDiscoverPresenter {
+      void getDiscoverData(int offset, int limit);
 
-        void getDiscoverHeader(String utm_term);
+      void getDiscoverHeader(String utm_term);
 
-    }
+   }
 }

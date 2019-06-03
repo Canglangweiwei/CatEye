@@ -24,124 +24,124 @@ import butterknife.BindView;
 
 public class VideoCommentListFragment extends com.cicinnus.retrofitlib.base.BaseMVPFragment<VideoCommentListPresenter> implements VideoCommentListContract.IVideoCommentListView {
 
-    @BindView(R.id.rv_video_comment)
-    RecyclerView rvVideoComment;
-    @BindView(R.id.progressLayout)
-    ProgressLayout progressLayout;
+   @BindView(R.id.rv_video_comment)
+   RecyclerView rvVideoComment;
+   @BindView(R.id.progressLayout)
+   ProgressLayout progressLayout;
 
 
-    private VideoCommentAdapter videoCommentAdapter;
-    private int offset;
+   private VideoCommentAdapter videoCommentAdapter;
+   private int offset;
 
 
-    private static final String VIDEO_ID = "video_id";
-    private int mVideoId;
+   private static final String VIDEO_ID = "video_id";
+   private int mVideoId;
 
-    public static VideoCommentListFragment newInstance(int videoId) {
+   public static VideoCommentListFragment newInstance(int videoId) {
 
-        Bundle args = new Bundle();
-        args.putInt(VIDEO_ID, videoId);
-        VideoCommentListFragment fragment = new VideoCommentListFragment();
-        fragment.setArguments(args);
-        return fragment;
-    }
+      Bundle args = new Bundle();
+      args.putInt(VIDEO_ID, videoId);
+      VideoCommentListFragment fragment = new VideoCommentListFragment();
+      fragment.setArguments(args);
+      return fragment;
+   }
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_video_comment_list;
-    }
+   @Override
+   protected int getLayoutId() {
+      return R.layout.fragment_video_comment_list;
+   }
 
-    @Override
-    protected VideoCommentListPresenter getPresenter() {
-        return new VideoCommentListPresenter(mContext, this);
-    }
+   @Override
+   protected VideoCommentListPresenter getPresenter() {
+      return new VideoCommentListPresenter(mContext, this);
+   }
 
-    @Override
-    protected void initEventAndData() {
-        RxBus.get().register(this);
-        mVideoId = getArguments().getInt(VIDEO_ID, 0);
+   @Override
+   protected void initEventAndData() {
+      RxBus.get().register(this);
+      mVideoId = getArguments().getInt(VIDEO_ID, 0);
 
-        videoCommentAdapter = new VideoCommentAdapter();
-        rvVideoComment.setLayoutManager(new LinearLayoutManager(mContext));
-        rvVideoComment.setAdapter(videoCommentAdapter);
-
-
-        videoCommentAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
-            @Override
-            public void onLoadMoreRequested() {
-                mPresenter.getMoreVideoComment(mVideoId, offset);
-            }
-        },rvVideoComment);
+      videoCommentAdapter = new VideoCommentAdapter();
+      rvVideoComment.setLayoutManager(new LinearLayoutManager(mContext));
+      rvVideoComment.setAdapter(videoCommentAdapter);
 
 
-        mPresenter.getVideoCommentList(mVideoId, offset);
+      videoCommentAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
+         @Override
+         public void onLoadMoreRequested() {
+            mPresenter.getMoreVideoComment(mVideoId, offset);
+         }
+      }, rvVideoComment);
 
-    }
 
-    @Subscribe
-    public void changedCommentList(CommentPostBean postBean) {
-        mVideoId = postBean.getVideoId();
-        offset = 0;
-        mPresenter.getVideoCommentList(mVideoId, offset);
+      mPresenter.getVideoCommentList(mVideoId, offset);
 
-    }
+   }
 
-    @Override
-    public void addVideoCommentList(List<VideoCommentListBean.DataBean.CommentsBean> comments) {
-        offset += 10;
-        videoCommentAdapter.setNewData(comments);
-    }
+   @Subscribe
+   public void changedCommentList(CommentPostBean postBean) {
+      mVideoId = postBean.getVideoId();
+      offset = 0;
+      mPresenter.getVideoCommentList(mVideoId, offset);
 
-    @Override
-    public void addVideoCommentCount(int total) {
-        RxBus.get().post(new CommentCountPostBean(total));
-    }
+   }
 
-    @Override
-    public void addMoreVideoComment(List<VideoCommentListBean.DataBean.CommentsBean> comments) {
-        if (comments.size() > 0) {
-            offset+=10;
-            videoCommentAdapter.addData(comments);
-            videoCommentAdapter.loadMoreComplete();
-        }else {
-            videoCommentAdapter.loadMoreEnd();
-        }
-    }
+   @Override
+   public void addVideoCommentList(List<VideoCommentListBean.DataBean.CommentsBean> comments) {
+      offset += 10;
+      videoCommentAdapter.setNewData(comments);
+   }
 
-    @Override
-    public void loadMoreError(String message) {
-        videoCommentAdapter.loadMoreFail();
-    }
+   @Override
+   public void addVideoCommentCount(int total) {
+      RxBus.get().post(new CommentCountPostBean(total));
+   }
 
-    @Override
-    public void showLoading() {
-        if (!progressLayout.isContent()) {
-            progressLayout.showContent();
-        }
-    }
+   @Override
+   public void addMoreVideoComment(List<VideoCommentListBean.DataBean.CommentsBean> comments) {
+      if (comments.size() > 0) {
+         offset += 10;
+         videoCommentAdapter.addData(comments);
+         videoCommentAdapter.loadMoreComplete();
+      } else {
+         videoCommentAdapter.loadMoreEnd();
+      }
+   }
 
-    @Override
-    public void showContent() {
-        if (!progressLayout.isContent()) {
-            progressLayout.showContent();
-        }
-    }
+   @Override
+   public void loadMoreError(String message) {
+      videoCommentAdapter.loadMoreFail();
+   }
 
-    @Override
-    public void showError(String errorMsg) {
-        Logger.d(errorMsg);
-        progressLayout.showError(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                offset = 0;
-                mPresenter.getVideoCommentList(mVideoId, offset);
-            }
-        });
-    }
+   @Override
+   public void showLoading() {
+      if (!progressLayout.isContent()) {
+         progressLayout.showContent();
+      }
+   }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        RxBus.get().unregister(this);
-    }
+   @Override
+   public void showContent() {
+      if (!progressLayout.isContent()) {
+         progressLayout.showContent();
+      }
+   }
+
+   @Override
+   public void showError(String errorMsg) {
+      Logger.d(errorMsg);
+      progressLayout.showError(new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+            offset = 0;
+            mPresenter.getVideoCommentList(mVideoId, offset);
+         }
+      });
+   }
+
+   @Override
+   public void onDestroy() {
+      super.onDestroy();
+      RxBus.get().unregister(this);
+   }
 }

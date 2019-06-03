@@ -11,15 +11,15 @@ import java.util.List;
  */
 
 public class OverseaMovieListContract {
-    public interface IOverseaMovieListView extends ICoreLoadingView {
-        void addOverseaHotMovieList(List<OverseaHotMovieBean.DataBean.HotBean> hot);
+   public interface IOverseaMovieListView extends ICoreLoadingView {
+      void addOverseaHotMovieList(List<OverseaHotMovieBean.DataBean.HotBean> hot);
 
-        void addOverseaComingMovieList(List<OverseaComingMovieBean.DataBean.ComingBean> coming);
-    }
+      void addOverseaComingMovieList(List<OverseaComingMovieBean.DataBean.ComingBean> coming);
+   }
 
-    public interface IOverseaMovieListPresenter {
-        void getOverseaHotMovieList(String area, int limit, int offset);
+   public interface IOverseaMovieListPresenter {
+      void getOverseaHotMovieList(String area, int limit, int offset);
 
-        void getOverseaComingMovieList(String area,int limit,int offset);
-    }
+      void getOverseaComingMovieList(String area, int limit, int offset);
+   }
 }

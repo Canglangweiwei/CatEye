@@ -13,27 +13,27 @@ import java.util.List;
 
 public class MovieMainAdapter extends FragmentPagerAdapter {
 
-    private List<Fragment> mFragments;
-    private List<String> mTitles;
+   private List<Fragment> mFragments;
+   private List<String> mTitles;
 
-    MovieMainAdapter(FragmentManager fm) {
-        super(fm);
-        mFragments = new ArrayList<>();
-        mTitles = new ArrayList<>();
-    }
+   MovieMainAdapter(FragmentManager fm) {
+      super(fm);
+      mFragments = new ArrayList<>();
+      mTitles = new ArrayList<>();
+   }
 
-    void addFragment(List<Fragment> fragments, List<String> titles) {
-        mFragments.addAll(fragments);
-        mTitles.addAll(titles);
-    }
+   void addFragment(List<Fragment> fragments, List<String> titles) {
+      mFragments.addAll(fragments);
+      mTitles.addAll(titles);
+   }
 
-    @Override
-    public Fragment getItem(int position) {
-        return mFragments.get(position);
-    }
+   @Override
+   public Fragment getItem(int position) {
+      return mFragments.get(position);
+   }
 
-    @Override
-    public int getCount() {
-        return mFragments.size();
-    }
+   @Override
+   public int getCount() {
+      return mFragments.size();
+   }
 }

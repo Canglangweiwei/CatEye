@@ -13,31 +13,32 @@ import com.cicinnus.cateye.R;
 public class PickCityAdapter extends BaseQuickAdapter<PickCityBean.CtsBean, BaseViewHolder> {
 
 
-    private OnCityClickListener onCityClickListener;
+   private OnCityClickListener onCityClickListener;
 
-    public PickCityAdapter() {
-        super(R.layout.item_city);
-    }
-    @Override
-    protected void convert(BaseViewHolder helper, final PickCityBean.CtsBean item) {
-        helper.setText(R.id.tv_city_name, item.getNm());
-        helper.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (onCityClickListener != null) {
-                    onCityClickListener.onClick(item);
-                }
+   public PickCityAdapter() {
+      super(R.layout.item_city);
+   }
+
+   @Override
+   protected void convert(BaseViewHolder helper, final PickCityBean.CtsBean item) {
+      helper.setText(R.id.tv_city_name, item.getNm());
+      helper.itemView.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+            if (onCityClickListener != null) {
+               onCityClickListener.onClick(item);
             }
-        });
-    }
+         }
+      });
+   }
 
-    public void setOnCityClickListener(OnCityClickListener onCityClickListener) {
-        this.onCityClickListener = onCityClickListener;
-    }
+   public void setOnCityClickListener(OnCityClickListener onCityClickListener) {
+      this.onCityClickListener = onCityClickListener;
+   }
 
-    public interface OnCityClickListener{
-        void onClick(PickCityBean.CtsBean item);
-    }
+   public interface OnCityClickListener {
+      void onClick(PickCityBean.CtsBean item);
+   }
 
 
 }

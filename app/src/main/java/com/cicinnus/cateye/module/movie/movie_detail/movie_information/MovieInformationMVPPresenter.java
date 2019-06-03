@@ -15,58 +15,58 @@ import io.reactivex.functions.Consumer;
 
 public class MovieInformationMVPPresenter extends com.cicinnus.retrofitlib.base.BaseMVPPresenter<MovieInformationContract.IMovieInformationView> implements MovieInformationContract.IMovieInformationPresenter {
 
-    private final MovieInformationManager movieInformationManager;
+   private final MovieInformationManager movieInformationManager;
 
-    public MovieInformationMVPPresenter(Activity activity, MovieInformationContract.IMovieInformationView view) {
-        super(activity, view);
-        movieInformationManager = new MovieInformationManager();
-    }
+   public MovieInformationMVPPresenter(Activity activity, MovieInformationContract.IMovieInformationView view) {
+      super(activity, view);
+      movieInformationManager = new MovieInformationManager();
+   }
 
-    @Override
-    public void getMovieInformation(int movieId, int offset) {
-        mView.showLoading();
-        addSubscribeUntilDestroy(movieInformationManager.getMovieInformation(movieId,offset)
+   @Override
+   public void getMovieInformation(int movieId, int offset) {
+      mView.showLoading();
+      addSubscribeUntilDestroy(movieInformationManager.getMovieInformation(movieId, offset)
 
-                .subscribe(new Consumer<MovieInformationBean>() {
-                    @Override
-                    public void accept(@NonNull MovieInformationBean movieInformationBean) throws Exception {
-                        mView.addMovieInformation(movieInformationBean.getData().getNewsList());
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(@NonNull Throwable throwable) throws Exception {
-                        Logger.e(throwable.getMessage());
-                        mView.showError(throwable.getMessage());
-                    }
-                }, new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        mView.showContent();
+          .subscribe(new Consumer<MovieInformationBean>() {
+             @Override
+             public void accept(@NonNull MovieInformationBean movieInformationBean) throws Exception {
+                mView.addMovieInformation(movieInformationBean.getData().getNewsList());
+             }
+          }, new Consumer<Throwable>() {
+             @Override
+             public void accept(@NonNull Throwable throwable) throws Exception {
+                Logger.e(throwable.getMessage());
+                mView.showError(throwable.getMessage());
+             }
+          }, new Action() {
+             @Override
+             public void run() throws Exception {
+                mView.showContent();
 
-                    }
-                }));
-    }
+             }
+          }));
+   }
 
-    @Override
-    public void getMoreMovieInformation(int movieId, int offset) {
-        addSubscribeUntilDestroy(movieInformationManager.getMovieInformation(movieId,offset)
-                .subscribe(new Consumer<MovieInformationBean>() {
-                    @Override
-                    public void accept(@NonNull MovieInformationBean movieInformationBean) throws Exception {
-                        mView.addMoreMovieInformation(movieInformationBean.getData().getNewsList());
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(@NonNull Throwable throwable) throws Exception {
-                        Logger.e(throwable.getMessage());
-                        mView.loadMoreError(throwable.getMessage());
-                    }
-                }, new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        mView.showContent();
+   @Override
+   public void getMoreMovieInformation(int movieId, int offset) {
+      addSubscribeUntilDestroy(movieInformationManager.getMovieInformation(movieId, offset)
+          .subscribe(new Consumer<MovieInformationBean>() {
+             @Override
+             public void accept(@NonNull MovieInformationBean movieInformationBean) throws Exception {
+                mView.addMoreMovieInformation(movieInformationBean.getData().getNewsList());
+             }
+          }, new Consumer<Throwable>() {
+             @Override
+             public void accept(@NonNull Throwable throwable) throws Exception {
+                Logger.e(throwable.getMessage());
+                mView.loadMoreError(throwable.getMessage());
+             }
+          }, new Action() {
+             @Override
+             public void run() throws Exception {
+                mView.showContent();
 
-                    }
-                }));
-    }
+             }
+          }));
+   }
 }

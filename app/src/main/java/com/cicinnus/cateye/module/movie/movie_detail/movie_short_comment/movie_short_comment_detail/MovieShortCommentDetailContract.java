@@ -7,11 +7,11 @@ import com.cicinnus.retrofitlib.base.ICoreLoadingView;
  */
 
 public class MovieShortCommentDetailContract {
-    public interface IMovieShortCommentDetailView extends ICoreLoadingView{
-        void addShortCommentDetail(MovieShortCommentDetailBean movieShortCommentDetailBean);
-    }
+   public interface IMovieShortCommentDetailView extends ICoreLoadingView {
+      void addShortCommentDetail(MovieShortCommentDetailBean movieShortCommentDetailBean);
+   }
 
-    public interface IMovieShortCommentDetailPresenter{
-        void getShortCommentList(int id,int limit,int offset);
-    }
+   public interface IMovieShortCommentDetailPresenter {
+      void getShortCommentList(int id, int limit, int offset);
+   }
 }

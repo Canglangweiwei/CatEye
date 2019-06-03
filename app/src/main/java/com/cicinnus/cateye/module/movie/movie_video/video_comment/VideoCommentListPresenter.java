@@ -13,52 +13,52 @@ import io.reactivex.functions.Consumer;
 
 public class VideoCommentListPresenter extends com.cicinnus.retrofitlib.base.BaseMVPPresenter<VideoCommentListContract.IVideoCommentListView> implements VideoCommentListContract.IVideoCommentListPresenter {
 
-    private final VideoCommentListManager videoCommentListManager;
+   private final VideoCommentListManager videoCommentListManager;
 
-    public VideoCommentListPresenter(Activity activity, VideoCommentListContract.IVideoCommentListView view) {
-        super(activity, view);
-        videoCommentListManager = new VideoCommentListManager();
-    }
+   public VideoCommentListPresenter(Activity activity, VideoCommentListContract.IVideoCommentListView view) {
+      super(activity, view);
+      videoCommentListManager = new VideoCommentListManager();
+   }
 
-    @Override
-    public void getVideoCommentList(int movieId, int offset) {
-        mView.showLoading();
-        addSubscribeUntilDestroy(videoCommentListManager.getVideoComment(movieId, offset)
-                .subscribe(new Consumer<VideoCommentListBean>() {
-                    @Override
-                    public void accept(@NonNull VideoCommentListBean videoCommentListBean) throws Exception {
-                        mView.addVideoCommentList(videoCommentListBean.getData().getComments());
-                        mView.addVideoCommentCount(videoCommentListBean.getData().getTotal());
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(@NonNull Throwable throwable) throws Exception {
-                        mView.showError(throwable.getMessage());
+   @Override
+   public void getVideoCommentList(int movieId, int offset) {
+      mView.showLoading();
+      addSubscribeUntilDestroy(videoCommentListManager.getVideoComment(movieId, offset)
+          .subscribe(new Consumer<VideoCommentListBean>() {
+             @Override
+             public void accept(@NonNull VideoCommentListBean videoCommentListBean) throws Exception {
+                mView.addVideoCommentList(videoCommentListBean.getData().getComments());
+                mView.addVideoCommentCount(videoCommentListBean.getData().getTotal());
+             }
+          }, new Consumer<Throwable>() {
+             @Override
+             public void accept(@NonNull Throwable throwable) throws Exception {
+                mView.showError(throwable.getMessage());
 
-                    }
-                }, new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        mView.showContent();
+             }
+          }, new Action() {
+             @Override
+             public void run() throws Exception {
+                mView.showContent();
 
-                    }
-                }));
-    }
+             }
+          }));
+   }
 
-    @Override
-    public void getMoreVideoComment(int movieId, int offset) {
-        addSubscribeUntilDestroy(videoCommentListManager.getVideoComment(movieId, offset)
-                .subscribe(new Consumer<VideoCommentListBean>() {
-                    @Override
-                    public void accept(@NonNull VideoCommentListBean videoCommentListBean) throws Exception {
-                        mView.addMoreVideoComment(videoCommentListBean.getData().getComments());
+   @Override
+   public void getMoreVideoComment(int movieId, int offset) {
+      addSubscribeUntilDestroy(videoCommentListManager.getVideoComment(movieId, offset)
+          .subscribe(new Consumer<VideoCommentListBean>() {
+             @Override
+             public void accept(@NonNull VideoCommentListBean videoCommentListBean) throws Exception {
+                mView.addMoreVideoComment(videoCommentListBean.getData().getComments());
 
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(@NonNull Throwable throwable) throws Exception {
-                        mView.loadMoreError(throwable.getMessage());
-                    }
-                }));
-    }
+             }
+          }, new Consumer<Throwable>() {
+             @Override
+             public void accept(@NonNull Throwable throwable) throws Exception {
+                mView.loadMoreError(throwable.getMessage());
+             }
+          }));
+   }
 }

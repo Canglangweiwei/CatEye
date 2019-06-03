@@ -9,10 +9,10 @@ import io.reactivex.Observable;
  */
 
 public class MovieShortCommentDetailManager {
-    public Observable<MovieShortCommentDetailBean> getMovieShortCommentDetail(int id,int limit,int offset){
-        return RetrofitClient
-                .getInstance()
-                .api()
-                .getMovieShortCommentDetail(id,limit,offset);
-    }
+   public Observable<MovieShortCommentDetailBean> getMovieShortCommentDetail(int id, int limit, int offset) {
+      return RetrofitClient
+          .getInstance()
+          .api()
+          .getMovieShortCommentDetail(id, limit, offset);
+   }
 }
